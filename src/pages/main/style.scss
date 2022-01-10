@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+   }
+
+$green: #1D8348;
+$dark: #292929;
+$red: #CB4335;
+$grey: #929A9F;
+$light: #F4F6F7;
+
+.wrapper{
+    font-family: 'DM Sans', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    background-color: $dark;
+    color: $grey;
+    padding: 1em 0;
+
+    &__nav{
+        display: flex;
+        justify-content: space-around;
+        width: 40%;
+        padding: 0.7em 3em;
+
+        a:hover{
+            color: $light;
+            cursor: pointer;
+        }
+    }
+
+
+
+    &__log-in{
+        border: 1px solid $green;
+        border-radius: 4px;
+        padding: 0.7em 3em;
+        cursor: pointer;
+        color: $green;
+    }
+
+    &__log-in:hover{
+        background-color: #28B463;
+    }
+
+    &__sing-up{
+        background-color: $green;
+        border-radius: 4px;
+        padding: 0.7em 3em;
+        color: $dark;
+    }
+
+    &__sing-up:hover{
+        background-color: #28B463;
+        cursor: pointer;
+    }
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    color: $light;
+    font-weight: bolder;
+    font-size: 37px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo:hover{
+    color: $grey;
+    cursor: pointer;
+}
+
+
+.hero{
+    background-color: $dark;
+    padding: 10rem 0;
+
+    &__part{
+        width: 40%;
+        padding: 1rem 4rem;
+    }
+
+    &__title{
+        color: $light;
+        font-size: 4rem;
+    }
+
+    &__description{
+        color: $light;
+        margin: 2rem 0;
+        font-size: 2em;
+    }
+
+    &__button{
+        background-color: $green;
+        border-radius: 3px;
+        padding: 0.7em 0;
+        text-align: center;
+        width: 40%;
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    &__button:hover{
+        background-color: #28B463;
+        cursor: pointer;
+    }
+}
+
+.about{
+    background-color: $light;
+
+    &__advantages{
+        color: $dark;
+        font-size: 1.7rem;
+        font-weight: bold;
+        line-height: 110%;
+        padding: 0 0 0 4rem;
+    }
+
+    &__advantages-list{
+        list-style-type: initial;
+        padding: 1rem 0 2rem 3rem;
+        li{
+            margin: 1em 0;
+            font-size: 1.5em;
+            color: $grey;
+        }
+    }
+}
+
+.title{
+    text-align: center;
+    color: $dark;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 110%;
+    padding: 5% 0 0 0;
+
+    &__description{
+        text-align: center;
+        color: $grey;
+        font-size: 1.2rem;
+        line-height: 110%;
+        padding: 2.5rem 0;
+    }
+}
+
+.trade-cards-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $light;
+}
+
+.trade-card{
+    display: flex;
+    border-radius: 20px;
+    background-color: $dark;
+    padding: 1rem 1.5rem;
+    width: 70%;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+    &__title{
+        font-size: 2rem;
+        color: $light;
+        align-self: center;
+        margin: 1em;
+    }
+
+    &__value{
+        font-size: 2rem;
+        color: $light;
+        align-self: center;
+    }
+
+    &__action-buy{
+        color: $light;
+        background-color: $green;
+        padding: 0.5em 4em;
+        border-radius: 4px;
+        margin: 1em;
+        cursor: pointer;
+    }
+
+    &__action-sell{
+        color: $light;
+        background-color: $red;
+        padding: 0.5em 4em;
+        border-radius: 4px;
+        margin: 1em;
+        cursor: pointer;
+    }
+}
+
+.footer{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    color: $light;
+    background-color: $dark;
+    
+    &__main-information{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        &__part{
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 40%;
+            padding: 5% 0;
+        }
+
+    }
+
+    &__main-information:after{
+        content: '';
+        position: absolute;
+        top: 90%;
+        right: 0;
+        left: 0;
+        height: 0.5px;
+        background-color: grey;
+    }
+
+    &__leaders{
+        width: 40%;
+        font-size: 1.1rem;
+        line-height: 120%
+    }
+
+
+    &__address{
+        right: 0;
+        width: 30%;
+        font-size: 1.1rem;
+        line-height: 120%;
+    }
+
+    &__signature{
+        display: flex;
+        padding: 0 0 1% 0;
+        color: grey;
+    }
+}
