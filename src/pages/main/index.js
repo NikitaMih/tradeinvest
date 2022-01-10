@@ -1,22 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import Login from "../../components/login"
 
 const MainPage = () => {
 
    const cards = [{card: 'BTC', value: 42686.70}, {card: 'Apple', value: 174.92}, {card: 'EYR/USD', value: 1.13}]
 
+   const [login, SetLogin] = useState(false);
+
+   const onLoginClick = () => {
+        SetLogin(!login)
+   }
+
+   const onReloadClick = () =>{
+        window.location.reload()
+   }
+
     return (
-        <div className='wrapper'>
+        <div className='wrapper-main'>
             <header className='header'>
-                <div className='logo'>T&I</div>
+                <div className='logo' onClick={onReloadClick}>T&I</div>
                 <nav className='header__nav'>
-                    <a>About</a>
-                    <a>How start</a>
-                    <a>Trade</a>
-                    <a>Contacts</a>
+                    <a href="#about">About</a>
+                    <a href="#how-to-start">How to start</a>
+                    <a href="#trade">Trade</a>
+                    <a href="#contacts">Contacts</a>
                 </nav>
-                <div className='header__login'>LOG IN</div>
+                <div className='header__login' onClick={onLoginClick}>LOG IN</div>
                 <div className='header__sing-up'>SING UP</div>
             </header>
             <main>
@@ -24,12 +41,12 @@ const MainPage = () => {
                     <div className='hero__part'>
                         <h1 className='hero__title'>Trade & Invest</h1>
                         <p className='hero__description'>Trade and earn with the best platform in the financial asset market</p>
-                        <div className='hero__button'>Invest</div>
+                        <div className='hero__button' onClick={onLoginClick}>Invest</div>
                     </div>
                     <div></div>
                 </div>
                 <div className='about'>
-                    <h2 className='title'>About</h2>
+                    <h2 className='title'>About<a name="about"></a></h2>
                     <div className='title__description'>JSC "Trade & Invest" - a reliable and fully regulated asset exchange operating within the framework of the legislation of the Republic of Belarus</div>
                     <div className='about__advantages'>Our advantages</div>
                     <div>
@@ -48,7 +65,7 @@ const MainPage = () => {
                     </div>
                 </div>
                 <div>
-                    <h2 className='title'>How to start</h2>
+                    <h2 className='title'>How to start<a name="how-to-start"></a></h2>
                     <div className='registration-cards-list'>
                         <div className='registration-card'>
                         </div>
@@ -64,7 +81,7 @@ const MainPage = () => {
                     </div>
                 </div>
                 <div className='trade-cards-list'>
-                    <h2 className='title'>Financial Instruments</h2>
+                    <h2 className='title'>Financial Instruments<a name="trade"></a></h2>
                     <div className='title__description'>Here you can choose and purchase the most profitable and acceptable financial instrument just for you</div>
                     <div className='trade-card'>
                         <div className='trade-card__title'>
@@ -115,9 +132,9 @@ const MainPage = () => {
                 </div>
             </div>
             <div className="footer__signature container">© 2022 Trade & Invest Com Limited</div>
-            </footer>
+            <a name="contacts"></a></footer>
+            {login && <Login />}
         </div>
-
     )
 }
 
