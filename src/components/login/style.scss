@@ -1,0 +1,80 @@
+//color
+$white: blue;
+$lite-grey: #bbbbbb;
+$ultra-lite-grey: #d0d0d0;
+
+
+.background-window {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    backdrop-filter: blur(2px);
+  }
+    
+  .login-window{
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      padding: 1% 0;
+      width: 30%;
+      background-color: $white;
+      min-width: 300px;
+  }
+
+  .login{
+    width: 80%;
+    align-self: center;
+  }
+  
+  .title-modal-window {
+    align-self: center;
+    padding: 3%;
+    font-size: 120%;
+    justify-content: center;
+  }
+
+  .subtitle-modal-window{
+    align-self: center;
+    padding: 1%;
+    font-size: 100%;
+    justify-content: center;
+  }
+
+  .input-modal-window{
+    align-self: cente
+  }
+
+  .btn-modal{
+    
+    &__continue{
+      background-color: $white;
+      align-self: flex-start;
+      width: 60%;
+      border-radius: 2px;
+      padding: 3%;
+      border: none;
+    }
+
+    &__continue:hover {
+      background-color: $lite-grey;
+    }
+
+    &__cancel {
+      background-color: $white;
+      align-self: flex-end;
+      width: 40%;
+      border-radius: 2px;
+      padding: 3%;
+      border: none;
+    }
+
+    &__cancel:hover {
+      background-color: $lite-grey;
+    }
+
+  }
