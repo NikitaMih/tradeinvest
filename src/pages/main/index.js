@@ -34,7 +34,7 @@ const MainPage = () => {
                     <a href="#contacts">Contacts</a>
                 </nav>
                 <div className='header__login' onClick={onLoginClick}>LOG IN</div>
-                <div className='header__sing-up'>SING UP</div>
+                <Link to="/registration" className='header__sing-up'>SING UP</Link>
             </header>
             <main>
                 <div className='hero'>

@@ -7,12 +7,16 @@ import {
 } from "react-router-dom";
 import MainPage from "../../pages/main"
 import AccountPage from "../../pages/account"
+import RegistrationPage from "../../pages/registration"
 
 export default function Navigation() {
   return (
     <Router>
       <div>
         <Switch>
+          <Route path="/registration">
+            <RegistrationPage />
+          </Route>
           <Route path="/account">
             <AccountPage />
           </Route>
