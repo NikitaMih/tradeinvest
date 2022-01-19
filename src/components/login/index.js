@@ -3,18 +3,33 @@ import ReactDOM from 'react-dom';
 import './style.scss'
 import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const Login = ({hideLogin}) => {
 
     const history = useHistory();
 
     const [login, SetLogin]  = useState();
     const [password, SetPassword] = useState();
+    const [err, SetErr] = useState(false);
 
     const onAuthorization = () =>{
-        fetch(`http://localhost:3001/profiles?login=${login}`)
+        fetch(`http://localhost:3001/profile?login=${login}`)
+        .catch(() => errAuthorization())
         .then((res) => res.json())
-        .then((res) => password === res[0].password && history.push("/account"))
-        .catch(() => console.log("err"))
+        .then((res) => onGoPage(res))
+        .catch(() => errAuthorization())
+    }
+
+    const errAuthorization = () => {
+        SetErr(true);
+    }
+
+    const onCancel = () => {
+        hideLogin();
+    }
+
+    const onGoPage = (res) => {
+        sessionStorage.setItem('login', res[0].login);
+        password === res[0].password && history.push("/account")
     }
     
     const onChangeLogin = (event) => {
@@ -28,9 +43,11 @@ const Login = () => {
     return(
         <div className='background-window'>
             <div className='login-window'>
+                <button className='btn-cancel' onClick={onCancel}>x</button>
                 <div className='login'>
                     <div className='title-modal-window'>Trade & Invest</div>
                     <div className='subtitle-modal-window'>Login</div>
+                    {err && <div className='authorization-err'>Login or Password is not correct</div>}
                     <input 
                         type="text" 
                         placeholder='login' 
@@ -43,10 +60,7 @@ const Login = () => {
                         className='input-modal-window'
                         onChange={onChangePassword}>
                     </input>
-                    <div className='btn-modal'>
-                        <button className='btn-modal__continue' onClick={onAuthorization}>CONTINUE</button>
-                        <button className='btn-modal__cancel'>CANCEL</button>
-                    </div>
+                    <button className='btn-continue' onClick={onAuthorization}>CONTINUE</button>
                 </div>
             </div>
         </div>

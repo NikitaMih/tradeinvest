@@ -1,0 +1,32 @@
+$green: #1D8348;
+$dark: #292929;
+$red: #CB4335;
+$grey: #929A9F;
+$light: #F4F6F7;
+
+.card-wallet{
+    background-color: $dark;
+    width: 40%;
+    color: white;
+    border-radius: 0.7rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn-change{
+
+    &__cash-out{
+        background-color: $red;
+    }
+    
+    &__cash-in{
+        background-color: $green;
+        
+    }
+    
+}
+
+
+
+
+

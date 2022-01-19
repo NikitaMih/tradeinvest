@@ -16,7 +16,11 @@ const MainPage = () => {
    const [login, SetLogin] = useState(false);
 
    const onLoginClick = () => {
-        SetLogin(!login)
+        SetLogin(true)
+   }
+
+   const hideLogin = () => {
+        SetLogin(false)
    }
 
    const onReloadClick = () =>{
@@ -43,40 +47,53 @@ const MainPage = () => {
                         <p className='hero__description'>Trade and earn with the best platform in the financial asset market</p>
                         <div className='hero__button' onClick={onLoginClick}>Invest</div>
                     </div>
-                    <div></div>
+                    <div>
+                    
+                    </div>
                 </div>
                 <div className='about'>
                     <h2 className='title'>About<a name="about"></a></h2>
                     <div className='title__description'>JSC "Trade & Invest" - a reliable and fully regulated asset exchange operating within the framework of the legislation of the Republic of Belarus</div>
                     <div className='about__advantages'>Our advantages</div>
-                    <div>
+                    <div className='about__advantages-blok'>
                         <div className='about__part'>
                             <ul className='about__advantages-list'>
-                                <li>2000+ financial assets</li>
-                                <li>Instant execution of transactions</li>
-                                <li>Competitive commissions. No hidden fees</li>
-                                <li>Reliable regulation. Compliance with world AML and KYC standards</li>
-                                <li>Affiliate and referral programs</li>
-                                <li>Investments in government bonds and companies</li>
+                                <li><span className='green-text'>2000+</span> financial assets;</li>
+                                <li><span className='green-text'>Instant</span> execution of transactions;</li>
+                                <li>Competitive commissions. No <span className='green-text'>hidden</span> fees;</li>
+                                <li>Reliable regulation. Compliance with world <span className='green-text'>AML</span> and <span className='green-text'>KYC</span> standards;</li>
+                                <li><span className='green-text'>Affiliate</span> and <span className='green-text'>referral</span> programs;</li>
+                                <li>Investments in <span className='green-text'>government</span> bonds and companies.</li>
                             </ul>
                         </div>
-                        <div>
+                        <div className='about__part'>
+                            <img src='https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODZ8fGZpbmFuY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60' />
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='how-to-start'>
                     <h2 className='title'>How to start<a name="how-to-start"></a></h2>
                     <div className='registration-cards-list'>
                         <div className='registration-card'>
+                            <img className='registration-card__img' src='https://cdn-icons-png.flaticon.com/512/1277/1277010.png'/>
+                            <h3 className='registration-card__title'>Registration</h3>
+                            <div className='registration-card__description'>Register a personal account on the platform in which your virtual wallet will be created</div>
                         </div>
-                        <div>&#10132;</div>
+                        <div className='arrow'>
+                            <img className='arrow__img' src='https://cdn-icons-png.flaticon.com/512/545/545682.png'/>
+                        </div>  
                         <div className='registration-card'>
-                            <div></div>
-                            <div></div>
+                            <img className='registration-card__img' src='https://cdn-icons-png.flaticon.com/512/493/493389.png'/>
+                            <h3 className='registration-card__title'>Replenishment</h3>
+                            <div className='registration-card__description'>Top up your virtual wallet with a bank card or by bank transfer</div>
                         </div>
-                        <div>&#10132;</div>
+                        <div className='arrow'>
+                            <img className='arrow__img' src='https://cdn-icons-png.flaticon.com/512/545/545682.png'/>
+                        </div> 
                         <div className='registration-card'>
-
+                            <img className='registration-card__img' src='https://cdn-icons-png.flaticon.com/512/4285/4285667.png'/>
+                            <h3 className='registration-card__title'>Trade</h3>
+                            <div className='registration-card__description'>Choose a company, enter the required quantity to buy and click "Buy"</div>
                         </div>
                     </div>
                 </div>
@@ -127,13 +144,13 @@ const MainPage = () => {
                     <a href="" className="logo">T&I</a>                
                 </div>
                 <div className="footer__main-information__part container">
-                    <div className="footer__leaders"><span>Managing Director</span> Mihalevich Nikita</div>
-                    <div className="footer__address"><span>Address</span> Bank of America Corporate Center, 100 North Tryon Street, Charlotte, NC 28255</div>
+                    <div className="footer__leaders"><span className='text-white'>Managing Director:</span><br/> Mihalevich Nikita</div>
+                    <div className="footer__address"><span className='text-white'>Address:</span><br/> Bank of America Corporate Center, 100 North Tryon Street, Charlotte, NC 28255</div>
                 </div>
             </div>
             <div className="footer__signature container">© 2022 Trade & Invest Com Limited</div>
             <a name="contacts"></a></footer>
-            {login && <Login />}
+            {login && <Login hideLogin={hideLogin} />}
         </div>
     )
 }
