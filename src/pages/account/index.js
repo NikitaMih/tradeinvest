@@ -1,35 +1,65 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+
+import Portfolio from '../../components/portfolio';
+import Trade from '../../components/trade';
+import Wallet from "../../components/wallet"
+import Profile from '../../components/profile';
+import Help from '../../components/help';
 
 const AccountPage = () => {
     return(
-        <div className='wrapper'>
-            <header className='header'>
-                <div className='logo'>T&I</div>
-                <div className='exit'>exit</div>
-            </header>
-            <main>
-                <div className='nav'>
-                    <nav className='nav__list'>
-                        <a>Briefcase</a>
-                        <a>Trade</a>
-                        <a>Wallet</a>
-                        <a>Profile</a>
-                        <a>Help</a>
-                    </nav>
-                </div>
-                <div className='active-block'>
-                    <div>Here you can buy any asset</div>
-                    <div className='change-currency'>
-                        <a>Securities</a>
-                        <a>Currency</a>
-                        <a>Crypto currency</a>
+        <Router>
+            <div className='wrapper'>
+                <header className='header'>
+                    <div className='logo'>T&I</div>
+                    <div className='exit'>exit</div>
+                </header>
+                <main>
+                    <div className='nav'>
+                        <nav className='nav__list'>
+                            <Link to="/account/portfolio">Portfolio</Link>
+                            <Link to="/account/trade">Trade</Link>
+                            <Link to="/account/wallet">Wallet</Link>
+                            <Link to="/account/profile">Profile</Link>
+                            <Link to="/account/help">Help</Link>
+                        </nav>
                     </div>
-                </div>
-            </main>
-        </div>
-
+                    <Switch>
+                        <Router path="/account/portfolio">
+                            <Portfolio />
+                        </Router>
+                        <Router path="/account/trade">
+                            <Trade />
+                        </Router>
+                        <Router path="/account/wallet">
+                            <Wallet />
+                        </Router>
+                        <Router path="/account/profile">
+                            <Profile />
+                        </Router>
+                        <Router path="/account/help">
+                            <Help />
+                        </Router>
+                    </Switch>
+                    {/* <div className='active-block'>
+                        <div>Here you can buy any asset</div>
+                        <div className='change-currency'>
+                            <a>Securities</a>
+                            <a>Currency</a>
+                            <a>Crypto currency</a>
+                        </div>
+                    </div> */}
+                </main>
+            </div>
+        </Router>
     )
 }
 

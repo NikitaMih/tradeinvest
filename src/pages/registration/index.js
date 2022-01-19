@@ -5,10 +5,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link, 
+    useHistory
   } from "react-router-dom";
 
 const RegistrationPage = () => {
+
 
     const [login, SetLogin] = useState();
     const [password, SetPassword] = useState();
@@ -16,14 +18,21 @@ const RegistrationPage = () => {
     const [phone, SetPhone] = useState();
 
     let formData = {
+        id: login,
         login: login,
         password: password,
         email: email,
         phone: phone,
+        wallet: {
+            EUR: 0,
+            RUS: 0,
+            USD: 0,
+        },
+        portfolio: {},
     }
 
     const onPostData = () => {
-        fetch("http://localhost:3001/profiles",{
+        fetch("http://localhost:3001/profile",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -48,32 +57,40 @@ const RegistrationPage = () => {
         SetPhone(event.target.value);
     } 
 
-
-
     return(
-        <div className='wrapper'>
-            <h2>Registration</h2>
-            <div>
-                <div>Login</div>
-                <input onChange={onChangeLogin}></input>
+        <div className='registration'>
+            <div className='registration__blok-form'>
+                <div className='registration-form'>
+                    <h2 className='registration-form__title'>Registration</h2>
+                    <div className='registration-form__login'>
+                        <div className='registration-form__subtitle'>Login</div>
+                        <input type='text' className='registration-form__input' onChange={onChangeLogin}></input>
+                    </div>
+                    <div className='registration-form__password'>
+                        <div>
+                            <div className='registration-form__subtitle'>Password</div>
+                            <input type='password' className='registration-form__input' onChange={onChangePassword}></input>
+                        </div>
+                        <div>
+                            <div className='registration-form__subtitle'>Confirm the password</div>
+                            <input type='password' className='registration-form__input'></input>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='registration-form__subtitle'>Email</div>
+                        <input type='text' className='registration-form__input' onChange={onChangeEmail}></input>
+                    </div>
+                    <div>
+                        <div className='registration-form__subtitle'>Phone</div>
+                        <input type='text' className='registration-form__input' onChange={onChangePhone}></input>
+                    </div>
+                    <button className='registration-form__btn-send' onClick={onPostData}>SING UP</button>
+                </div>
             </div>
-            <div>
-                <div>Password</div>
-                <input onChange={onChangePassword}></input>
-                <div>Confirm the password</div>
-                <input></input>
+            <div className='registration__blok-img'>
+                <div className='registration__logo'>Trade & Invest</div>
             </div>
-            <div>
-                <div>Email</div>
-                <input onChange={onChangeEmail}></input>
-            </div>
-            <div>
-                <div>Phone</div>
-                <input onChange={onChangePhone}></input>
-            </div>
-            <button onClick={onPostData}>SING UP</button>
         </div>
-
     )
 }
 
