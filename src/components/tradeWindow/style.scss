@@ -1,0 +1,11 @@
+@import "../../config/style/style.scss";
+
+.trade-window{
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 1% 0;
+    width: 30%;
+    background-color: $dark;
+    min-width: 300px;
+}

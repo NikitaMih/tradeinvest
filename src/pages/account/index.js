@@ -26,7 +26,7 @@ const AccountPage = () => {
                     <div className='nav'>
                         <nav className='nav__list'>
                             <Link to="/account/portfolio">Portfolio</Link>
-                            <Link to="/account/trade">Trade</Link>
+                            <Link to="/account/trade/cryptocurrency">Trade</Link>
                             <Link to="/account/wallet">Wallet</Link>
                             <Link to="/account/profile">Profile</Link>
                             <Link to="/account/help">Help</Link>
@@ -36,7 +36,7 @@ const AccountPage = () => {
                         <Router path="/account/portfolio">
                             <Portfolio />
                         </Router>
-                        <Router path="/account/trade">
+                        <Router path="/account/trade/cryptocurrency">
                             <Trade />
                         </Router>
                         <Router path="/account/wallet">
@@ -49,14 +49,6 @@ const AccountPage = () => {
                             <Help />
                         </Router>
                     </Switch>
-                    {/* <div className='active-block'>
-                        <div>Here you can buy any asset</div>
-                        <div className='change-currency'>
-                            <a>Securities</a>
-                            <a>Currency</a>
-                            <a>Crypto currency</a>
-                        </div>
-                    </div> */}
                 </main>
             </div>
         </Router>

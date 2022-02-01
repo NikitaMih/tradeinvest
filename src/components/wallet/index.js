@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './style.scss'
 import {
@@ -12,6 +13,8 @@ import CardWallet from "../cardWallet"
 
 const Wallet = () => {
 
+    const login = useSelector((state) => state.login);
+    
     const [currencies, SetCurrencies] = useState([
         {
             name: "EUR",
@@ -31,7 +34,6 @@ const Wallet = () => {
     }
 
     const onDataCurrency = () =>{
-        let login = sessionStorage.getItem('login');
         fetch(`http://localhost:3001/profile?login=${login}`)
         .then((res) => res.json())
         .then((res) => onChangeCurrency(res[0]))
@@ -58,7 +60,8 @@ const Wallet = () => {
                         key={item.name} 
                         name={item.name} 
                         value={item.value}
-                        onUpdateCurrency={onUpdateCurrency} />
+                        onUpdateCurrency={onUpdateCurrency} 
+                         />
                 )
             })}
         </div>

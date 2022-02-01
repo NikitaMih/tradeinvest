@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './style.scss'
 import Success from '../modalSuccess'
@@ -9,9 +10,11 @@ const Help = () => {
     const [title, SetTitle] = useState('');
     const [text, SetText] = useState('');
 
+    const login = useSelector((state) => state.login);
+
     let message = {
         id: title,
-        login: sessionStorage.getItem('login'),
+        login: login,
         title: title,
         text: text
     }

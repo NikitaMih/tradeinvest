@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './style.scss'
 import { useHistory } from "react-router-dom";
+
+
+const setLoginAction = (login) => {
+    return{
+        type: 'SAVE_LOGIN',
+        payload: login,
+    }
+}
 
 const Login = ({hideLogin}) => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const [login, SetLogin]  = useState();
+    const [login, SetLogin] = useState();
     const [password, SetPassword] = useState();
     const [err, SetErr] = useState(false);
+
 
     const onAuthorization = () =>{
         fetch(`http://localhost:3001/profile?login=${login}`)
         .catch(() => errAuthorization())
         .then((res) => res.json())
-        .then((res) => onGoPage(res))
+        .then((res) => onGoPage(res, login))
         .catch(() => errAuthorization())
     }
 
@@ -27,15 +38,15 @@ const Login = ({hideLogin}) => {
         hideLogin();
     }
 
-    const onGoPage = (res) => {
-        sessionStorage.setItem('login', res[0].login);
-        password === res[0].password && history.push("/account")
+    const onGoPage = (res, login) => {
+        dispatch(setLoginAction(login))
+        password === res[0].password && history.push("/account");
     }
-    
-    const onChangeLogin = (event) => {
-        SetLogin(event.target.value)
-    } 
 
+    const onChangeLogin = (event) => {
+        SetLogin(event.target.value);
+    } 
+    
     const onChangePassword = (event) => {
         SetPassword(event.target.value);
     } 
