@@ -1,14 +1,9 @@
+@import "../../config/style/style.scss";
+
 * {
     margin: 0;
     padding: 0;
    }
-
-$green: #1D8348;
-$dark: #292929;
-$red: #CB4335;
-$grey: #929A9F;
-$light: #F4F6F7;
-
 .wrapper{
     font-family: 'DM Sans', sans-serif;
 }
@@ -45,10 +40,23 @@ $light: #F4F6F7;
     &__list{
         display: flex;
         flex-direction: column;
+        align-items: center;
+        padding: 0 2%;
 
         a{
             margin: 2rem 0;
             text-align: center;
+            color: $light;
+            border: 3px solid;
+            border-radius: 1em;
+            text-decoration: none;
+            width: 80%;
+            padding: 15% 0;
+        }
+
+        a:hover{
+            color: $grey;
+            cursor: pointer;
         }
     }
 }

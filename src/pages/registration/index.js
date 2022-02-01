@@ -27,8 +27,13 @@ const RegistrationPage = () => {
             EUR: 0,
             RUS: 0,
             USD: 0,
+            BTC: 0,
+            ETH: 0,
+            Litecoin: 0,
+            Apple: 0,
+            Facebook: 0,
+            Amazon: 0,
         },
-        portfolio: {},
     }
 
     const onPostData = () => {

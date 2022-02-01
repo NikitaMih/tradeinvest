@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './style.scss'
 import {
     BrowserRouter as Router,
@@ -10,11 +11,13 @@ import {
 
 const CardWallet = ({name, value, onUpdateCurrency}) => {
 
+    const login = useSelector((state) => state.login);
+    
     const [cash, SetCash] = useState(false);
 
-    const onChangeCash = (value) => {
+    const onChangeCash = (change) => {
         let changeValue = null 
-        if (value === 1){
+        if (change === 1){
             changeValue = event.target.previousSibling.value
         }else{
             changeValue = event.target.nextElementSibling.value * (-1)
@@ -24,17 +27,16 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
     }
 
     const onDataCurrency = (currencyName, changeValue) =>{
-        let login = sessionStorage.getItem('login');
         fetch(`http://localhost:3001/profile?login=${login}`)
-        .then((res) => res.json())
+        .then((res) => (res.json()))
         .then((res) => onChangeDataCurrency(res[0], currencyName, changeValue))
-        .catch(() => console.log("err"))
+        .catch(() => console.log("get err"))
     }   
 
     const onChangeDataCurrency = (data, currencyName, changeValue) => {
         let newValue = data.wallet[currencyName] + +changeValue;
         if (newValue > 0){
-            data.wallet[currencyName] = newValue;
+            data.wallet[currencyName] = newValue;   
             onPostCurrency(data);
         }else{
             alert("На вашем счету не достаточно средств");
@@ -43,7 +45,6 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
     }
 
     const onPostCurrency = (data) => {
-        let login = sessionStorage.getItem('login');
         fetch(`http://localhost:3001/profile/${login}`,{
             method: "PUT",
             headers: {
