@@ -1,55 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import './style.scss'
+import { 
+    selectLogin, 
+    selectPassword, 
+    selectError, 
+    selectHistory, 
+    SetLogin, 
+    SetPassword,
+    SetShowLogin, 
+    authorization 
+} from '../../slices/loginSlice';
+import './style.scss';
 import { useHistory } from "react-router-dom";
 
-
-const setLoginAction = (login) => {
-    return{
-        type: 'SAVE_LOGIN',
-        payload: login,
-    }
-}
-
-const Login = ({hideLogin}) => {
+const Login = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [login, SetLogin] = useState();
-    const [password, SetPassword] = useState();
-    const [err, SetErr] = useState(false);
+    const login = useSelector(selectLogin);
+    const password = useSelector(selectPassword);
+    const err =  useSelector(selectError);
+    const address =  useSelector(selectHistory);
 
+    useEffect(() => {
+        history.push(address);
+    }, [address]);
 
-    const onAuthorization = () =>{
-        fetch(`http://localhost:3001/profile?login=${login}`)
-        .catch(() => errAuthorization())
-        .then((res) => res.json())
-        .then((res) => onGoPage(res, login))
-        .catch(() => errAuthorization())
-    }
-
-    const errAuthorization = () => {
-        SetErr(true);
+    const onAuthorization = (login, password) => {
+        dispatch(authorization(login, password));
     }
 
     const onCancel = () => {
-        hideLogin();
+        dispatch(SetShowLogin(false));
     }
-
-    const onGoPage = (res, login) => {
-        dispatch(setLoginAction(login))
-        password === res[0].password && history.push("/account");
-    }
-
-    const onChangeLogin = (event) => {
-        SetLogin(event.target.value);
-    } 
-    
-    const onChangePassword = (event) => {
-        SetPassword(event.target.value);
-    } 
 
     return(
         <div className='background-window'>
@@ -63,15 +48,15 @@ const Login = ({hideLogin}) => {
                         type="text" 
                         placeholder='login' 
                         className='input-modal-window'
-                        onChange={onChangeLogin}>
+                        onChange={ (event) => dispatch(SetLogin(event.target.value)) }>
                     </input>
                     <input 
                         type="password"
                         placeholder='password' 
                         className='input-modal-window'
-                        onChange={onChangePassword}>
+                        onChange={ (event) => dispatch(SetPassword(event.target.value)) }>
                     </input>
-                    <button className='btn-continue' onClick={onAuthorization}>CONTINUE</button>
+                    <button className='btn-continue' onClick={ () => onAuthorization(login, password) }>CONTINUE</button>
                 </div>
             </div>
         </div>

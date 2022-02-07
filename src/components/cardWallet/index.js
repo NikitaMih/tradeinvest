@@ -11,7 +11,7 @@ import {
 
 const CardWallet = ({name, value, onUpdateCurrency}) => {
 
-    const login = useSelector((state) => state.login);
+    const login = useSelector((state) => state.login.login);
     
     const [cash, SetCash] = useState(false);
 
@@ -66,14 +66,13 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
 
     return (
         <div className='card-wallet' id={name}>
-            <h3>{name}</h3>
-            <div>{value}</div>
+            <h3>{name}: {value}</h3>
             <div className='btn-change'>
                 {(!cash) && <button className='btn-change__cash-out' onClick={() => onVisibleInput(-1)}>CASH OUT</button>}
                 {(!cash) && <button className='btn-change__cash-in'onClick={() => onVisibleInput(1)}>CASH IN</button>}
 
                 {cash === -1 && <button className='btn-change__cash-out' onClick={() => onChangeCash(-1)}>CASH OUT</button>}
-                {cash && <input></input>}
+                {cash && <input className='btn-change__input'></input>}
                 {cash === 1 && <button className='btn-change__cash-in'onClick={() => onChangeCash(1)}>CASH IN</button>}
             </div>
         </div>

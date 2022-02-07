@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './reducer';
-import Navigation from './components/navigation';
 
-const store = createStore(reducer);
+import './index.scss';
+import { store } from './store';
+import Navigation from './navigation';
 
 ReactDOM.render(
   <React.StrictMode>

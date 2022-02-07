@@ -5,9 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import MainPage from "../../pages/main"
-import AccountPage from "../../pages/account"
-import RegistrationPage from "../../pages/registration"
+import MainPage from "../pages/main"
+import AccountPage from "../pages/account"
+import RegistrationPage from "../pages/registration"
 
 export default function Navigation() {
   return (

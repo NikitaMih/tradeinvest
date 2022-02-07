@@ -4,12 +4,16 @@
     margin: 0;
     padding: 0;
    }
+
 .wrapper{
     font-family: 'DM Sans', sans-serif;
 }
 
-.header{
+.header-account{
     display: flex;
+    justify-content: space-between;
+    color: $grey;
+    padding: 1em 3.5em;
     background-color: $dark;
 }
 
@@ -28,7 +32,14 @@
     cursor: pointer;
 }
 
+.exit{
+    font-size: 1.3em;
+    cursor: pointer;
+}
 
+.exit:hover{
+    color: $light;
+}
 
 .nav{
     position: fixed;
@@ -66,5 +77,3 @@
     left: 10%;
     background-color: $light;
 }
-
-
