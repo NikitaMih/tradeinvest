@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss'
+import './style.scss';
 
-const ModalSuccess = () => {
+const ModalWindow = ({text}) => {
     return(
         <div className='background-window'>
-            <div className='success'>
-                <div></div>
-                <div>SUCCESS</div>
+            <div className='modal-text'>
+                <div>{text}</div>
             </div>
         </div>
 
     )
 }
 
-export default ModalSuccess
+export default ModalWindow;

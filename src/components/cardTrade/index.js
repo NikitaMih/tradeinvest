@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss'
+import './style.scss';
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,16 +9,39 @@ import {
     Link
   } from "react-router-dom";
 import TradeWindow from '../tradeWindow';
+import {
+    SetUserData,
+    SetCardName, 
+    SetCardRate,
+    SetTypeTrade,
+    SetChangeCurrency,
+    SetReferenceCurrency, 
+    SetShowTradeWindow,
+    selectUserData,
+    selectShowTradeWindow, 
+    getUserData,
+    postUserData,
+    } from '../../slices/tradeSlice';
 
 const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
-    
-    const login = useSelector((state) => state.login);
+
+    const dispatch = useDispatch();
+
+    const login = useSelector((state) => state.login.login);
+    const userData = useSelector(selectUserData);
+    const showTradeWindow = useSelector(selectShowTradeWindow);
     
     const [rate, SetRate] = useState(baseRate);
-    const [typeTrade, SetTypeTrade] = useState('');
-    const [showTradeWindow, SetShowTradeWindow] = useState(false);
-    const [userData, SetUserData] = useState({});
-    const [balance, SetBalance] = useState();
+
+    useEffect(() => {
+        onUserData(login);
+    },[]);
+
+    useEffect(() => {
+        if (JSON.stringify(userData) !== '{}'){
+            dispatch(postUserData(login, userData));
+        }
+    }, [userData])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -29,46 +52,22 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
       }, []);
 
   
-    useEffect(() => {
-        onUserData();
-    },[])
-  
-    const onUserData = () =>{
-        fetch(`http://localhost:3001/profile?login=${login}`)
-        .then((res) => (res.json()))
-        .then((res) => SetUserData(res[0]))
-        .catch(() => console.log("get err"))
+    const onUserData = (login) =>{
+        dispatch(getUserData(login)); 
     } 
 
-    const postNewBalance = (newReferenceBalance, newChangeBalance) => {
-        userData.wallet[changeCurrency] = newChangeBalance;
-        userData.wallet[referenceCurrency] = newReferenceBalance;
-        onPostUserData(userData);
-    }
-
-    const onPostUserData = (data) => {
-        fetch(`http://localhost:3001/profile/${login}`,{
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(() => renderUpdate())
-    }
+    // const onPostUserData = (data) => {
+        
+    // }
     
-    const onBuy = () => {
-        SetTypeTrade('Buy')
-        SetShowTradeWindow(true);
-        SetBalance(userData.wallet[referenceCurrency]);
-
-    }
-
-    const onSell = () => {
-        SetTypeTrade('Sell')
-        SetShowTradeWindow(true);
-        SetBalance(userData.wallet[referenceCurrency]);
-    }
+    const onBuySell = (btnText) => {
+        dispatch(SetTypeTrade(btnText));
+        dispatch(SetCardName(name));
+        dispatch(SetCardRate(rate));
+        dispatch(SetChangeCurrency(changeCurrency));
+        dispatch(SetReferenceCurrency(referenceCurrency));
+        dispatch(SetShowTradeWindow(true));
+    };
       
     return(
         <div className='trade-card'>
@@ -79,17 +78,10 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
                {rate}
             </div>
             <div className='trade-card__action'>
-                <div className='trade-card__action-buy' onClick={onBuy}>BUY</div>
-                <div className='trade-card__action-sell' onClick={onSell}>SELL</div>
+                <div className='trade-card__action-buy' onClick={ () => onBuySell('BUY')}>BUY</div>
+                <div className='trade-card__action-sell' onClick={ () => onBuySell('SELL') }>SELL</div>
             </div>
-            {showTradeWindow && <TradeWindow 
-                name={name} 
-                changeCurrency={changeCurrency} 
-                referenceCurrency={referenceCurrency} 
-                rate={rate} 
-                type={typeTrade} 
-                balance={balance}
-                postNewBalance={postNewBalance} />}
+            {showTradeWindow && <TradeWindow/>}
         </div>
     )
 }

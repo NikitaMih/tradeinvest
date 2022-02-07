@@ -1,27 +1,44 @@
-$green: #1D8348;
-$dark: #292929;
-$red: #CB4335;
-$grey: #929A9F;
-$light: #F4F6F7;
+@import "../../config/style/style.scss";
 
 .card-wallet{
     background-color: $dark;
-    width: 40%;
+    width: 50%;
     color: white;
     border-radius: 0.7rem;
     text-align: center;
     margin-top: 2rem;
+    padding: 2% 0;
+    min-width: 600px;
 }
 
 .btn-change{
+    display: flex;
+    justify-content: space-around;
+
+    &__input{
+        padding: 0.5em 4em;
+        border-radius: 4px;
+        margin: 1em;
+    }
 
     &__cash-out{
+        color: $light;
         background-color: $red;
+        padding: 0.5em 4em;
+        border-radius: 4px;
+        margin: 1em;
+        border: none;
+        cursor: pointer;
     }
     
     &__cash-in{
+        color: $light;
         background-color: $green;
-        
+        padding: 0.5em 4em;
+        border-radius: 4px;
+        margin: 1em;
+        border: none;
+        cursor: pointer;
     }
     
 }

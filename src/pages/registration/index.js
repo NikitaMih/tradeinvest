@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss'
+import './style.scss';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link, 
     useHistory
   } from "react-router-dom";
 
 const RegistrationPage = () => {
 
+    const history = useHistory();
 
     const [login, SetLogin] = useState();
     const [password, SetPassword] = useState();
@@ -25,7 +23,7 @@ const RegistrationPage = () => {
         phone: phone,
         wallet: {
             EUR: 0,
-            RUS: 0,
+            RUB: 0,
             USD: 0,
             BTC: 0,
             ETH: 0,
@@ -34,7 +32,7 @@ const RegistrationPage = () => {
             Facebook: 0,
             Amazon: 0,
         },
-    }
+    };
 
     const onPostData = () => {
         fetch("http://localhost:3001/profile",{
@@ -43,11 +41,16 @@ const RegistrationPage = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
-        })
+        });
+        goMain()
+    }
+
+    const goMain = () => {
+        history.goBack();
     }
 
     const onChangeLogin = (event) => {
-        SetLogin(event.target.value)
+        SetLogin(event.target.value);
     } 
 
     const onChangePassword = (event) => {
@@ -55,7 +58,7 @@ const RegistrationPage = () => {
     } 
 
     const onChangeEmail = (event) => {
-        SetEmail(event.target.value)
+        SetEmail(event.target.value);
     } 
 
     const onChangePhone = (event) => {
@@ -97,6 +100,6 @@ const RegistrationPage = () => {
             </div>
         </div>
     )
-}
+};
 
 export default RegistrationPage;

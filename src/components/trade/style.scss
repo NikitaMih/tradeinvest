@@ -1,4 +1,36 @@
+@import "../../config/style/style.scss";
+
 .trade{
-    position: relative;
+    position: fixed;
     left: 10%;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $light;
+
+    &__switch-list{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__switch{
+        border: none;
+        background-color: $light;
+        cursor: pointer;
+        font-size: 1.5em;
+        color: $grey;
+    }
+
+    &__switch:hover{
+        color: $dark;
+    }
+}
+
+.account-title{
+    text-align: center;
+    font-size: 2.5em;
+    margin: 1% 0;
 }

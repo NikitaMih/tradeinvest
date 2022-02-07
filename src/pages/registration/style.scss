@@ -41,8 +41,9 @@
         }
     
         &__subtitle{
+            align-self: flex-start;
             font-size: 1em;
-            color: #929A9F;
+            color: $grey;
         }
 
         &__btn-send{

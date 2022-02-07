@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss'
-import Success from '../modalSuccess'
+import './style.scss';
+import ModalWindow from '../modalWindow';
 
 const Help = () => {
 
@@ -10,7 +10,7 @@ const Help = () => {
     const [title, SetTitle] = useState('');
     const [text, SetText] = useState('');
 
-    const login = useSelector((state) => state.login);
+    const login = useSelector((state) => state.login.login);
 
     let message = {
         id: title,
@@ -47,22 +47,25 @@ const Help = () => {
 
     return(
         <div className='help'>
-            <h2>HELP</h2>
-            <div>Here you can write an appeal to us</div>
-            <input 
-                placeholder='Title'
-                value={title}
-                className='help__title'
-                onChange={onChangeTitle}>
-            </input>
-            <input 
-                placeholder='Text'
-                value={text}
-                className='help__text'
-                onChange={onChangeText}>
-            </input>
-            <button onClick={onSendMessage}>SEND</button>
-            {send && <Success />}
+            <h3 className='account-title'>HELP</h3>
+            <div className='account-description'>Here you can write an appeal to us</div>
+                <div className='help-form'>
+                    <div className='help-form__title'>Massage</div>
+                    <input
+                        className='help-form__input-title' 
+                        placeholder='Title'
+                        value={title}
+                        onChange={onChangeTitle}>
+                    </input>
+                    <textarea  
+                        className='help-form__input-text' 
+                        placeholder='Text'
+                        value={text}
+                        onChange={onChangeText}>
+                    </textarea>
+                    <div className='help-form__btn' onClick={onSendMessage}>SEND</div>
+                </div>
+            {send && <ModalWindow text={"Success"}/>}
         </div>
     )
 }

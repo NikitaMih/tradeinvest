@@ -1,27 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss'
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
+import { selectShowLogin, SetShowLogin } from '../../slices/loginSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import Login from "../../components/login"
 
 const MainPage = () => {
 
-   const cards = [{card: 'BTC', value: 42686.70}, {card: 'Apple', value: 174.92}, {card: 'EYR/USD', value: 1.13}]
+   const dispatch = useDispatch();
 
-   const [login, SetLogin] = useState(false);
-
-   const onLoginClick = () => {
-        SetLogin(true)
-   }
-
-   const hideLogin = () => {
-        SetLogin(false)
-   }
+   const showLogin = useSelector(selectShowLogin);
 
    const onReloadClick = () =>{
         window.location.reload()
@@ -37,7 +29,7 @@ const MainPage = () => {
                     <a href="#trade">Trade</a>
                     <a href="#contacts">Contacts</a>
                 </nav>
-                <div className='header__login' onClick={onLoginClick}>LOG IN</div>
+                <div className='header__login' onClick={() => dispatch(SetShowLogin(true))}>LOG IN</div>
                 <Link to="/registration" className='header__sing-up'>SING UP</Link>
             </header>
             <main>
@@ -45,10 +37,7 @@ const MainPage = () => {
                     <div className='hero__part'>
                         <h1 className='hero__title'>Trade & Invest</h1>
                         <p className='hero__description'>Trade and earn with the best platform in the financial asset market</p>
-                        <div className='hero__button' onClick={onLoginClick}>Invest</div>
-                    </div>
-                    <div>
-                    
+                        <div className='hero__button' onClick={() => dispatch(SetShowLogin(true))}>Invest</div>
                     </div>
                 </div>
                 <div className='about'>
@@ -150,7 +139,7 @@ const MainPage = () => {
             </div>
             <div className="footer__signature container">© 2022 Trade & Invest Com Limited</div>
             <a name="contacts"></a></footer>
-            {login && <Login hideLogin={hideLogin} />}
+            {showLogin && <Login/>}
         </div>
     )
 }

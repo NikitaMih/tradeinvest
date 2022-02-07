@@ -1,6 +1,84 @@
+@import "../../config/style/style.scss";
+
 .help{
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
     left: 10%;
+    width: 90%;
+}
+
+.account-title{
+    text-align: center;
+    font-size: 2.5em;
+    margin: 1% 0;
+}
+
+.account-description{
+    text-align: center;
+    font-size: 1em;
+    color: $grey;
+}
+
+.help-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+    margin: 1em 0;
+    border-radius: 3em;
+    width: 60%;
+    background-color: $dark;
+
+    &__title{
+        color: $grey;
+        font-size: 2rem;
+        align-self: flex-start;
+    }
+
+    &__input-title{
+        align-self: center;
+        width: 100%;
+        height: 2.5em;
+        border-radius: 1em;
+        border: 1px solid $light;
+        padding: 0.5rem;
+        margin: 0.3em 0;
+        color: $light;
+        background-color: $dark;
+        font-size: 1rem;
+    }
+
+    &__input-text{
+        align-self: center;
+        width: 100%;
+        height: 2.5em;
+        border-radius: 1em;
+        border: 1px solid $light;
+        padding: 0.5rem;
+        margin: 0.3em 0;
+        color: $light;
+        background-color: $dark;
+        font-size: 1rem;
+        min-height: 200px;
+    }
+
+    &__btn{
+        align-self: flex-end;
+        text-align: center;
+        background-color: $green;
+        width: 30%;
+        border-radius: 1em;
+        height: 1.5em; 
+        padding: 0.5em;
+        margin: 1em 0 0 0;
+        border: none; 
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    &__btn:hover{
+        background-color: $light-green;
+    }   
 }

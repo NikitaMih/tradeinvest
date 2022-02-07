@@ -1,38 +1,84 @@
 import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss'
+import './style.scss';
+import PieChart from '../pieChart';
+import { selectLogin } from '../../slices/loginSlice';
+import { selectUserData, getUserData } from '../../slices/portfolioSlice';
+import { BASERATE } from '../../config/js/index';
 
 const Portfolio = () => {
 
+    const dispatch = useDispatch();
+    const userData = useSelector(selectUserData); 
 
-    console.log(Data());
+    const login = useSelector(selectLogin);
+
+    const [data, SetData] = useState([]);
+
+    useEffect(() => {
+        dispatch(getUserData(login));
+    },[])
+
+    useEffect(() => {
+        SetData(calcDataPieChart());
+    },[userData])
+
+    let calcCur = {
+      BTC: 0,
+      ETH: 0,
+      Litecoin: 0,
+      Apple: 0,
+      Facebook: 0,
+      Amazon: 0,
+      EUR: 0,
+      RUB: 0,
+      USD: 0,
+   };
+
+    const calcDataPieChart = () => {
+        for(let key in calcCur){
+            calcCur[key] = userData?.wallet?.[key] * +BASERATE[key];
+        }
+        const cryptocurrencySum = calcCur.BTC + calcCur.ETH + calcCur.Litecoin;
+        const securitiesSum = calcCur.Apple + calcCur.Facebook + calcCur.Amazon;
+        const currencySum = calcCur.EUR + calcCur.RUB + calcCur.USD;
+        const totalAmount = cryptocurrencySum + securitiesSum + currencySum;
+        const percCryptocurrency = (cryptocurrencySum/totalAmount)*100;
+        const percSecurities = (securitiesSum/totalAmount)*100;
+        const percCurrency = (currencySum/totalAmount)*100;
+        return [percCryptocurrency, percSecurities, percCurrency];
+    }
 
     return(
         <div className='portfolio'>
-            <div>
-                <div>
-                    <div>Cryptocurrency</div>
-                    <div>
-                        <div>BTC</div>
-                        <div>ETH</div>
-                        <div>Litecoin</div>
-                    </div>
+            <div className="pie-chart">
+                <PieChart Data={data}/>
+            </div>
+            <div className='currency'>
+                <div className='currency__blok'>
+                    <h3 className='currency__title'>Cryptocurrency</h3>
+                    <ul className='currency__list'>
+                        <li>BTC: {userData?.wallet?.BTC}</li>
+                        <li>ETH: {userData?.wallet?.ETH}</li>
+                        <li>Litecoin: {userData?.wallet?.Litecoin}</li>
+                    </ul>
                 </div>
-                <div>
-                    <div>Securities</div>
-                    <div>
-                        <div>Apple</div>
-                        <div>Facebook</div>
-                        <div>Amazon</div>
-                    </div>
+                <div className='currency__blok'>
+                    <h3 className='currency__title'>Securities</h3>
+                    <ul className='currency__list'>
+                        <li>Apple: {userData?.wallet?.Apple}</li>
+                        <li>Facebook: {userData?.wallet?.Facebook}</li>
+                        <li>Amazon: {userData?.wallet?.Amazon}</li>
+                    </ul>
                 </div>
-                <div>
-                    <div>Currency</div>
-                    <div>
-                        <div>USD</div>
-                        <div>EUR</div>
-                        <div>RUB</div>
-                    </div>
+                <div className='currency__blok'>
+                    <h3 className='currency__title'>Currency</h3>
+                    <ul  className='currency__list'>
+                        <li>USD: {userData?.wallet?.USD}</li>
+                        <li>EUR: {userData?.wallet?.EUR}</li>
+                        <li>RUB: {userData?.wallet?.RUB}</li>
+                    </ul>
                 </div>
             </div>
         </div>

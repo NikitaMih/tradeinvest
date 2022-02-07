@@ -1,19 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-
-import CardWallet from "../cardWallet"
+import './style.scss';
+import CardWallet from "../cardWallet";
 
 const Wallet = () => {
 
-    const login = useSelector((state) => state.login);
+    const login = useSelector((state) => state.login.login);
     
     const [currencies, SetCurrencies] = useState([
         {
@@ -28,6 +21,8 @@ const Wallet = () => {
             name: "RUS",
             value: "",
         }]);
+
+    useEffect(() => onDataCurrency(), [])
 
     const onUpdateCurrency = () =>{
         onDataCurrency();
@@ -48,22 +43,22 @@ const Wallet = () => {
         ])
     }
 
-    useEffect(() => onDataCurrency(), [])
-
     return(
         <div className='wallet'>
-            <h2>Wallet</h2>
-            <div>Here you can top up your wallet</div>
-            {currencies.map((item) => {
-                return(
-                    <CardWallet 
-                        key={item.name} 
-                        name={item.name} 
-                        value={item.value}
-                        onUpdateCurrency={onUpdateCurrency} 
-                         />
-                )
-            })}
+            <h3 className='account-title'>Wallet</h3>
+            <div className='account-description'>Here you can top up your wallet</div>
+            <div className='wallet-list'>
+                {currencies.map((item) => {
+                    return(
+                        <CardWallet 
+                            key={item.name} 
+                            name={item.name} 
+                            value={item.value}
+                            onUpdateCurrency={onUpdateCurrency} 
+                            />
+                    )
+                })}
+            </div>
         </div>
     )
 }
