@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUserData, getUserData } from '../../slices/portfolioSlice';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,6 +33,6 @@ const PieChart = ({Data}) => {
             data={data} 
         />
     );
-}
+};
 
 export default PieChart;

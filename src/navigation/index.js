@@ -27,4 +27,4 @@ export default function Navigation() {
       </div>
     </Router>
   );
-}
+};

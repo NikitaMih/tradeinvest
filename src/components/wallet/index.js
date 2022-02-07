@@ -22,18 +22,18 @@ const Wallet = () => {
             value: "",
         }]);
 
-    useEffect(() => onDataCurrency(), [])
+    useEffect(() => onDataCurrency(), []);
 
     const onUpdateCurrency = () =>{
         onDataCurrency();
-    }
+    };
 
     const onDataCurrency = () =>{
         fetch(`http://localhost:3001/profile?login=${login}`)
         .then((res) => res.json())
         .then((res) => onChangeCurrency(res[0]))
         .catch(() => console.log("err"))
-    }   
+    };
 
     const onChangeCurrency = (data) => {
         SetCurrencies([ 
@@ -41,7 +41,7 @@ const Wallet = () => {
             {name: "USD", value: data.wallet.USD},
             {name: "RUS", value: data.wallet.RUS},
         ])
-    }
+    };
 
     return(
         <div className='wallet'>
@@ -61,7 +61,7 @@ const Wallet = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Wallet;
 

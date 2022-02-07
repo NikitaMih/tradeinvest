@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 import { selectShowLogin, SetShowLogin } from '../../slices/loginSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import Login from "../../components/login"
+import Login from "../../components/login";
 
 const MainPage = () => {
 
@@ -17,7 +17,7 @@ const MainPage = () => {
 
    const onReloadClick = () =>{
         window.location.reload()
-   }
+   };
 
     return (
         <div className='wrapper-main'>
@@ -142,6 +142,6 @@ const MainPage = () => {
             {showLogin && <Login/>}
         </div>
     )
-}
+};
 
 export default MainPage;

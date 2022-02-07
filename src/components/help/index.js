@@ -17,15 +17,15 @@ const Help = () => {
         login: login,
         title: title,
         text: text
-    }
+    };
 
     const onChangeTitle = () => {
         SetTitle(event.target.value);
-    }
+    };
 
     const onChangeText = () => {
         SetText(event.target.value);
-    }
+    };
 
     const onSendMessage = () => {
             fetch("http://localhost:3001/help",{
@@ -36,14 +36,14 @@ const Help = () => {
                 body: JSON.stringify(message)
             })
             onSuccess();
-    } 
+    };;
 
     const onSuccess = () =>{
         SetSend(true)
         SetTitle('')
         SetText('');
         setTimeout(() => SetSend(false), 1000)
-    }
+    };
 
     return(
         <div className='help'>
@@ -68,6 +68,6 @@ const Help = () => {
             {send && <ModalWindow text={"Success"}/>}
         </div>
     )
-}
+};
 
 export default Help;
