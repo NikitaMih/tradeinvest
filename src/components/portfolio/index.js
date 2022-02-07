@@ -18,11 +18,11 @@ const Portfolio = () => {
 
     useEffect(() => {
         dispatch(getUserData(login));
-    },[])
+    },[]);
 
     useEffect(() => {
         SetData(calcDataPieChart());
-    },[userData])
+    },[userData]);
 
     let calcCur = {
       BTC: 0,
@@ -48,7 +48,7 @@ const Portfolio = () => {
         const percSecurities = (securitiesSum/totalAmount)*100;
         const percCurrency = (currencySum/totalAmount)*100;
         return [percCryptocurrency, percSecurities, percCurrency];
-    }
+    };
 
     return(
         <div className='portfolio'>
@@ -83,6 +83,6 @@ const Portfolio = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Portfolio;

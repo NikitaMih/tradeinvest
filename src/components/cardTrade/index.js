@@ -2,15 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './style.scss';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
 import TradeWindow from '../tradeWindow';
 import {
-    SetUserData,
     SetCardName, 
     SetCardRate,
     SetTypeTrade,
@@ -41,7 +34,7 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
         if (JSON.stringify(userData) !== '{}'){
             dispatch(postUserData(login, userData));
         }
-    }, [userData])
+    }, [userData]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -54,11 +47,7 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
   
     const onUserData = (login) =>{
         dispatch(getUserData(login)); 
-    } 
-
-    // const onPostUserData = (data) => {
-        
-    // }
+    };
     
     const onBuySell = (btnText) => {
         dispatch(SetTypeTrade(btnText));
@@ -84,6 +73,6 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
             {showTradeWindow && <TradeWindow/>}
         </div>
     )
-}
+};
 
 export default CardTarde;

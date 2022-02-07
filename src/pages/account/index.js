@@ -6,7 +6,6 @@ import {
     Switch,
     Route,
     Link,
-    useHistory
   } from "react-router-dom";
 
 import Portfolio from '../../components/portfolio';

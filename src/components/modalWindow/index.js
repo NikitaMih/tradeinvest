@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss';
 
@@ -11,6 +11,6 @@ const ModalWindow = ({text}) => {
         </div>
 
     )
-}
+};
 
 export default ModalWindow;

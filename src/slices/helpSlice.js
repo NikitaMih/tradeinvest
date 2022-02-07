@@ -56,15 +56,6 @@ export const sendMessage = (message) => {
       dispatch(SetError(true));
     }
   }
-}
-
-// fetch("http://localhost:3001/help",{
-//     method: "POST",
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(message)
-// })
-// onSuccess();
+};
 
 export default helpSlice.reducer;

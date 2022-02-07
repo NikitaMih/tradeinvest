@@ -1,14 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import './style.scss';
 import {
     SetUserData,
     SetShowTradeWindow,
@@ -17,9 +10,7 @@ import {
     selectCardRate,
     selectTypeTrade,
     selectChangeCurrency,
-    selectNewData,
-    selectReferenceCurrency,
-    postUserData } from '../../slices/tradeSlice';
+    selectReferenceCurrency } from '../../slices/tradeSlice';
 import LineChart from '../lineChart';
 import ModalWindow from '../modalWindow';
 
@@ -34,7 +25,7 @@ const TradeWindow = () => {
     const referenceCurrency = useSelector(selectChangeCurrency);
     const changeCurrency = useSelector(selectReferenceCurrency);
 
-    const [sumReference, SetSumReference] = useState(0);
+    const [sumYouNeed, SetSumYouNeed] = useState(0);
     const [cost, SetCost] = useState(0);
     const [colorBtn, SetColorBtn] = useState('');
     const [showWindow, SetShowWindow] = useState(false);
@@ -85,19 +76,24 @@ const TradeWindow = () => {
         setTimeout(() => {
             SetShowWindow(false);
         }, 1000)
-    }
+    };
 
     const changeCost = (value) => {
         SetCost(value);
-    }
+    };
     
     useEffect(() => {
         onColorBtn();
     },[]);
 
+    useEffect(() => {
+        const youNeed = rate * cost;
+        SetSumYouNeed(youNeed);
+    },[rate, cost]);
+
     const onColorBtn = () => {
         type === 'BUY' ? SetColorBtn('#1D8348') : SetColorBtn('#CB4335');
-    }
+    };
 
     return(
         <div className='background-window'>
@@ -112,7 +108,7 @@ const TradeWindow = () => {
                         <div className='trade-window__info-rate'>Rate: {rate} {changeCurrency}</div>
                         <input className='trade-window__info-input' type='number' onChange={(event) => changeCost(event.target.value)}></input>
                         <div className='trade-window__info-balance'>Balance: { type === 'BUY' ? wallet[changeCurrency] : wallet[referenceCurrency]} {type === 'BUY' ? changeCurrency : referenceCurrency}</div>
-                        <div>Your need: {sumReference}</div>
+                        <div>Your need: {sumYouNeed}</div>
                         <button style={{backgroundColor:colorBtn}} onClick={changeUserData}>{type}</button>
                     </div>
                 </div>
@@ -120,7 +116,6 @@ const TradeWindow = () => {
             {showWindow && <ModalWindow text={textModal}/>}
         </div>
     )
-
-}
+};
 
 export default TradeWindow;

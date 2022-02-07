@@ -42,11 +42,11 @@ export function LineChart({name,rate}) {
 
     useEffect(() => {
         createDataChart()
-    },[])
+    },[]);
 
     useEffect(() => {
         changeDataChart()
-    },[rate])
+    },[rate]);
 
     const createDataChart = () => {
         for(let i = 0; i <= 19; i++) {
@@ -54,13 +54,13 @@ export function LineChart({name,rate}) {
             SetValue(value.push(newRate))
         }
         value.push(rate);
-    }
+    };
 
     const changeDataChart = () => {
         let newData = value.slice(1)
         newData.push(rate)
         SetValue(newData)
-    }
+    };
 
     const data = {
         labels,

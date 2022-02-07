@@ -43,27 +43,27 @@ const RegistrationPage = () => {
             body: JSON.stringify(formData)
         });
         goMain()
-    }
+    };
 
     const goMain = () => {
         history.goBack();
-    }
+    };
 
     const onChangeLogin = (event) => {
         SetLogin(event.target.value);
-    } 
+    };
 
     const onChangePassword = (event) => {
         SetPassword(event.target.value);
-    } 
+    };
 
     const onChangeEmail = (event) => {
         SetEmail(event.target.value);
-    } 
+    }; 
 
     const onChangePhone = (event) => {
         SetPhone(event.target.value);
-    } 
+    }; 
 
     return(
         <div className='registration'>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
-import './style.scss'
+import './style.scss';
 
 const Profile = () => {
 
@@ -20,7 +20,7 @@ const Profile = () => {
             .then((res) => res.json())
             .then((res) => renderData(res[0]))
             .catch(() => console.log("err"))   
-    }
+    };
 
     const postProfileData = async (data) => {
             await fetch(`http://localhost:3001/profile/${login}`,{
@@ -30,15 +30,15 @@ const Profile = () => {
                 },
                 body: JSON.stringify(data)
             })
-    }
+    };
 
-    useEffect(() => getProfileData(), [])
+    useEffect(() => getProfileData(), []);
 
     const renderData = (data) => {
         SetUserData(data);
         SetEmail(data.email);
         SetPhone(data.phone);
-    }
+    };
 
     const onChangeData = () => {
         SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'EDIT');
@@ -48,15 +48,15 @@ const Profile = () => {
         const newEmail = document.getElementById('email').value;
         const newPhone = document.getElementById('phone').value;
         postProfileData({...userData, login: newLogin, email: newEmail, phone: newPhone})
-    }
+    };
 
     const onChangeEmail = (value) => {
         SetEmail(value)
-    }
+    };
 
     const onChangePhone = (value) => {
         SetPhone(value)
-    }
+    };
 
     return(
         <div className='profile'>
@@ -96,6 +96,6 @@ const Profile = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Profile;
