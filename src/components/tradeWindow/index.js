@@ -58,7 +58,7 @@ const TradeWindow = () => {
                 dispatch(SetUserData(newUserData));
                 showModalWindow('SUCCESS');
             }else{
-                showModalWindow(`На балансе недостаточно ${changeCurrency}`);
+                showModalWindow(`Insufficient funds ${changeCurrency}`);
             }
         }
         if(type === 'SELL'){
@@ -73,7 +73,7 @@ const TradeWindow = () => {
                 dispatch(SetUserData(newUserData));
                 showModalWindow('SUCCESS');
             }else{
-                showModalWindow(`На балансе недостаточно ${referenceCurrency}`);
+                showModalWindow(`Insufficient funds ${referenceCurrency}`);
             }
         }
     

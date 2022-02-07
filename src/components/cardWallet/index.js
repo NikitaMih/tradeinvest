@@ -8,12 +8,15 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import ModalWindow from '../modalWindow';
 
 const CardWallet = ({name, value, onUpdateCurrency}) => {
 
     const login = useSelector((state) => state.login.login);
     
     const [cash, SetCash] = useState(false);
+    const [showWindow, SetShowWindow] = useState(false);
+    const [textModal, SetTextModal] = useState('');
 
     const onChangeCash = (change) => {
         let changeValue = null 
@@ -39,7 +42,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
             data.wallet[currencyName] = newValue;   
             onPostCurrency(data);
         }else{
-            alert("На вашем счету не достаточно средств");
+            showModalWindow('Insufficient funds');
             SetCash(false);
         }
     }
@@ -64,6 +67,14 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
         SetCash(value)
     }
 
+    const showModalWindow = (text) => {
+        SetTextModal(text);
+        SetShowWindow(true);
+        setTimeout(() => {
+            SetShowWindow(false);
+        }, 1000)
+    }
+
     return (
         <div className='card-wallet' id={name}>
             <h3>{name}: {value}</h3>
@@ -75,6 +86,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
                 {cash && <input className='btn-change__input'></input>}
                 {cash === 1 && <button className='btn-change__cash-in'onClick={() => onChangeCash(1)}>CASH IN</button>}
             </div>
+            {showWindow && <ModalWindow text={textModal}/>}
         </div>
     )
 }
