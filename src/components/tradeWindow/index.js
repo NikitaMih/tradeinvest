@@ -10,7 +10,9 @@ import {
     selectCardRate,
     selectTypeTrade,
     selectChangeCurrency,
-    selectReferenceCurrency } from '../../slices/tradeSlice';
+    postUserData,
+    selectReferenceCurrency
+ } from '../../slices/tradeSlice';
 import LineChart from '../lineChart';
 import ModalWindow from '../modalWindow';
 
@@ -18,6 +20,7 @@ const TradeWindow = () => {
 
     const dispatch = useDispatch();
 
+    const login = useSelector((state) => state.login.login);
     const userData = useSelector(selectUserData);
     const name = useSelector(selectCardName);
     const rate = useSelector(selectCardRate);
@@ -34,19 +37,20 @@ const TradeWindow = () => {
     let wallet = {...userData?.wallet};
 
     const changeUserData = () => {
-        const count = rate * cost;
+        const count = +rate * +cost;
         const balanceReference = userData.wallet[referenceCurrency];
         const balanceChange  = userData.wallet[changeCurrency];
         if(type === 'BUY'){
             let newBalanceChange = 0;
             let newBalanceReference = 0;
-            newBalanceChange = balanceChange - count;
+            newBalanceChange = +balanceChange - +count;
             if(newBalanceChange >= 0){
-                newBalanceReference = balanceReference + cost;
+                newBalanceReference = +balanceReference + +cost;
                 wallet[changeCurrency] = +newBalanceChange;
                 wallet[referenceCurrency] = +newBalanceReference;
                 const newUserData = {...userData, wallet}
                 dispatch(SetUserData(newUserData));
+                dispatch(postUserData(login, newUserData));
                 showModalWindow('SUCCESS');
             }else{
                 showModalWindow(`Insufficient funds ${changeCurrency}`);
@@ -55,13 +59,14 @@ const TradeWindow = () => {
         if(type === 'SELL'){
             let newBalanceChange = 0;
             let newBalanceReference = 0;
-            newBalanceReference = balanceReference - cost;
+            newBalanceReference = +balanceReference - +cost;
             if(newBalanceReference >= 0){
                 newBalanceChange = +balanceChange + +count;
-                wallet[changeCurrency] = +newBalanceChange.toFixed(2);
-                wallet[referenceCurrency] = +newBalanceReference.toFixed(2);
+                wallet[changeCurrency] = +newBalanceChange;
+                wallet[referenceCurrency] = +newBalanceReference;
                 const newUserData = {...userData, wallet}
                 dispatch(SetUserData(newUserData));
+                dispatch(postUserData(login, newUserData));
                 showModalWindow('SUCCESS');
             }else{
                 showModalWindow(`Insufficient funds ${referenceCurrency}`);
@@ -75,6 +80,7 @@ const TradeWindow = () => {
         SetShowWindow(true);
         setTimeout(() => {
             SetShowWindow(false);
+            dispatch(SetShowTradeWindow(false))
         }, 1000)
     };
 
@@ -88,7 +94,7 @@ const TradeWindow = () => {
 
     useEffect(() => {
         const youNeed = rate * cost;
-        SetSumYouNeed(youNeed);
+        type === 'BUY' ? SetSumYouNeed(youNeed) : SetSumYouNeed(cost);
     },[rate, cost]);
 
     const onColorBtn = () => {

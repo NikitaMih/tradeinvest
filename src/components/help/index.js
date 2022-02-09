@@ -50,7 +50,7 @@ const Help = () => {
             <h3 className='account-title'>HELP</h3>
             <div className='account-description'>Here you can write an appeal to us</div>
                 <div className='help-form'>
-                    <div className='help-form__title'>Massage</div>
+                    <div className='help-form__title'>Message</div>
                     <input
                         className='help-form__input-title' 
                         placeholder='Title'

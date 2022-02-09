@@ -15,6 +15,16 @@
     display: flex;
     justify-content: space-around;
 
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    
+    input[type=number] {
+    -moz-appearance:textfield;
+    }
+
     &__input{
         padding: 0.5em 4em;
         border-radius: 4px;
@@ -42,8 +52,3 @@
     }
     
 }
-
-
-
-
-

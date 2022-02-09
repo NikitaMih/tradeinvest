@@ -18,7 +18,7 @@ const Wallet = () => {
             value: "",
         },
         {
-            name: "RUS",
+            name: "RUB",
             value: "",
         }]);
 
@@ -39,7 +39,7 @@ const Wallet = () => {
         SetCurrencies([ 
             {name: "EUR", value: data.wallet.EUR},
             {name: "USD", value: data.wallet.USD},
-            {name: "RUS", value: data.wallet.RUS},
+            {name: "RUB", value: data.wallet.RUB},
         ])
     };
 

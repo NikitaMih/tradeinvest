@@ -12,29 +12,15 @@ import {
     SetShowTradeWindow,
     selectUserData,
     selectShowTradeWindow, 
-    getUserData,
-    postUserData,
     } from '../../slices/tradeSlice';
 
 const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
 
     const dispatch = useDispatch();
 
-    const login = useSelector((state) => state.login.login);
-    const userData = useSelector(selectUserData);
     const showTradeWindow = useSelector(selectShowTradeWindow);
     
     const [rate, SetRate] = useState(baseRate);
-
-    useEffect(() => {
-        onUserData(login);
-    },[]);
-
-    useEffect(() => {
-        if (JSON.stringify(userData) !== '{}'){
-            dispatch(postUserData(login, userData));
-        }
-    }, [userData]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -43,11 +29,6 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
         }, 5000);
         return () => clearInterval(interval);
       }, []);
-
-  
-    const onUserData = (login) =>{
-        dispatch(getUserData(login)); 
-    };
     
     const onBuySell = (btnText) => {
         dispatch(SetTypeTrade(btnText));

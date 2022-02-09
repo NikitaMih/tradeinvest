@@ -89,7 +89,7 @@ const Profile = () => {
                         className='profile-form__input' 
                         disabled={inputDisabled} 
                         value={phone}
-                        nChange={(event) => onChangePhone(event.target.value)}
+                        onChange={(event) => onChangePhone(event.target.value)}
                         ></input>
                 </div>
                 <button style={{backgroundColor: colorBtn}} className='profile-form__btn' onClick={onChangeData}>{typeBtn}</button>

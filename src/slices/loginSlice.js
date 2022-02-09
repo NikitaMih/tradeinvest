@@ -46,7 +46,7 @@ export const authorization = (login, password) => {
   return async (dispatch) => {
     try{
       const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
-      password === res.data[0].password && dispatch(SetHistory());
+      password === res.data[0].password ? dispatch(SetHistory()) : dispatch(SetError(true));
     } catch {
       dispatch(SetError(true));
     }

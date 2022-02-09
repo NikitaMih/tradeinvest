@@ -5,6 +5,7 @@ import {
     BrowserRouter as Router,
     useHistory
   } from "react-router-dom";
+import ModalWindow from '../../components/modalWindow';
 
 const RegistrationPage = () => {
 
@@ -14,6 +15,8 @@ const RegistrationPage = () => {
     const [password, SetPassword] = useState();
     const [email, SetEmail] = useState();
     const [phone, SetPhone] = useState();
+    const [showWindow, SetShowWindow] = useState(false);
+    const [textModal, SetTextModal] = useState('');
 
     let formData = {
         id: login,
@@ -46,7 +49,12 @@ const RegistrationPage = () => {
     };
 
     const goMain = () => {
-        history.goBack();
+        SetTextModal('SUCCESSFULLY REGISTERED');
+        SetShowWindow(true);
+        setTimeout(() => {
+            history.goBack();
+            SetShowWindow(false);
+        }, 1000);
     };
 
     const onChangeLogin = (event) => {
@@ -63,7 +71,7 @@ const RegistrationPage = () => {
 
     const onChangePhone = (event) => {
         SetPhone(event.target.value);
-    }; 
+    };
 
     return(
         <div className='registration'>
@@ -98,6 +106,7 @@ const RegistrationPage = () => {
             <div className='registration__blok-img'>
                 <div className='registration__logo'>Trade & Invest</div>
             </div>
+            {showWindow && <ModalWindow text={textModal}/>}
         </div>
     )
 };

@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     return(
-        <div className='background-window'>
+        <div className='background-window' onKeyDown={ (event) => event.key === 'Enter' && onAuthorization(login, password) }>
             <div className='login-window'>
                 <button className='btn-cancel' onClick={onCancel}>x</button>
                 <div className='login'>
@@ -61,7 +61,6 @@ const Login = () => {
             </div>
         </div>
     )
-
 };
 
 export default Login;

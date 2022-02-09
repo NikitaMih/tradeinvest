@@ -32,7 +32,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
 
     const onChangeDataCurrency = (data, currencyName, changeValue) => {
         let newValue = data.wallet[currencyName] + +changeValue;
-        if (newValue > 0){
+        if (newValue >= 0){
             data.wallet[currencyName] = newValue;   
             onPostCurrency(data);
         }else{
@@ -77,7 +77,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
                 {(!cash) && <button className='btn-change__cash-in'onClick={() => onVisibleInput(1)}>CASH IN</button>}
 
                 {cash === -1 && <button className='btn-change__cash-out' onClick={() => onChangeCash(-1)}>CASH OUT</button>}
-                {cash && <input className='btn-change__input'></input>}
+                {cash && <input type="number" className='btn-change__input'></input>}
                 {cash === 1 && <button className='btn-change__cash-in'onClick={() => onChangeCash(1)}>CASH IN</button>}
             </div>
             {showWindow && <ModalWindow text={textModal}/>}
