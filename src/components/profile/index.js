@@ -1,61 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
+import { 
+    selectUserData,
+    selectEmail,
+    selectPhone,
+    SetEmail,
+    SetPhone,
+    GetProfileData,
+    PostProfileData } from '../../slices/profileSlice'
 
 const Profile = () => {
 
+    const dispatch = useDispatch();
+
     const login = useSelector((state) => state.login.login);
 
-    const [userData, SetUserData] = useState({});
-    const [email, SetEmail] = useState('');
-    const [phone, SetPhone] = useState('');
+    const userData = useSelector(selectUserData);
+    const email = useSelector(selectEmail);
+    const phone = useSelector(selectPhone);
 
     const [typeBtn, SetTypeBtn] = useState('EDIT');
     const [colorBtn, SetColorBtn] = useState('#ff8844');
     const [inputDisabled, SetInputDisabled] = useState(true);
 
-    const getProfileData = () => {
-            fetch(`http://localhost:3001/profile?login=${login}`)
-            .then((res) => res.json())
-            .then((res) => renderData(res[0]))
-            .catch(() => console.log("err"))   
-    };
-
-    const postProfileData = async (data) => {
-            await fetch(`http://localhost:3001/profile/${login}`,{
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-    };
-
-    useEffect(() => getProfileData(), []);
-
-    const renderData = (data) => {
-        SetUserData(data);
-        SetEmail(data.email);
-        SetPhone(data.phone);
-    };
+    useEffect(() => dispatch(GetProfileData(login)), []);
 
     const onChangeData = () => {
         SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'EDIT');
         SetColorBtn(typeBtn === 'EDIT' ? '#1D8348' : '#ff8844');
         SetInputDisabled(!inputDisabled);
-        const newLogin = document.getElementById('login').value;
-        const newEmail = document.getElementById('email').value;
-        const newPhone = document.getElementById('phone').value;
-        postProfileData({...userData, login: newLogin, email: newEmail, phone: newPhone})
-    };
-
-    const onChangeEmail = (value) => {
-        SetEmail(value)
-    };
-
-    const onChangePhone = (value) => {
-        SetPhone(value)
+        if (typeBtn === 'SAVE'){
+            const newLogin = document.getElementById('login').value;
+            const newEmail = document.getElementById('email').value;
+            const newPhone = document.getElementById('phone').value;
+            const newData = {...userData, login: newLogin, email: newEmail, phone: newPhone};
+            dispatch(PostProfileData(login, newData));
+        } 
     };
 
     return(
@@ -79,7 +61,7 @@ const Profile = () => {
                         className='profile-form__input' 
                         disabled={inputDisabled} 
                         value={email}
-                        onChange={(event) => onChangeEmail(event.target.value)}
+                        onChange={(event) => dispatch(SetEmail(event.target.value))}
                     ></input>
                 </div>
                 <div>
@@ -89,7 +71,7 @@ const Profile = () => {
                         className='profile-form__input' 
                         disabled={inputDisabled} 
                         value={phone}
-                        onChange={(event) => onChangePhone(event.target.value)}
+                        onChange={(event) => dispatch(SetPhone(event.target.value))}
                         ></input>
                 </div>
                 <button style={{backgroundColor: colorBtn}} className='profile-form__btn' onClick={onChangeData}>{typeBtn}</button>

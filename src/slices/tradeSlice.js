@@ -87,17 +87,6 @@ export const postUserData = (login, data) => {
             body: JSON.stringify(data)
         })
     }
-}
-
-// const onPostUserData = (data) => {
-//     fetch(`http://localhost:3001/profile/${login}`,{
-//         method: "PUT",
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(data)
-//     })
-//     .then(() => renderUpdate())
-// }
+};
 
 export default tradeSlice.reducer;

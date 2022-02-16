@@ -1,47 +1,56 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './style.scss';
 import CardWallet from "../cardWallet";
+import { 
+    selectUserData,
+    selectUSD,
+    selectEUR,
+    selectRUB,
+    getUserData } from '../../slices/walletSlice';
 
 const Wallet = () => {
 
+    const dispatch = useDispatch();
+
     const login = useSelector((state) => state.login.login);
+    // const userData = useSelector(selectUserData);
+    const USD = useSelector(selectUSD);
+    const EUR = useSelector(selectEUR);
+    const RUB = useSelector(selectRUB);
+
     
     const [currencies, SetCurrencies] = useState([
         {
             name: "EUR",
-            value: "",
+            value: EUR,
         },
         {
             name: "USD",
-            value: "",
+            value: USD,
         },
         {
             name: "RUB",
-            value: "",
+            value: RUB,
         }]);
 
-    useEffect(() => onDataCurrency(), []);
+    useEffect(() => {
+        dispatch(getUserData(login))
+    }, []);
 
-    const onUpdateCurrency = () =>{
-        onDataCurrency();
-    };
-
-    const onDataCurrency = () =>{
-        fetch(`http://localhost:3001/profile?login=${login}`)
-        .then((res) => res.json())
-        .then((res) => onChangeCurrency(res[0]))
-        .catch(() => console.log("err"))
-    };
-
-    const onChangeCurrency = (data) => {
+    useEffect(() => {
         SetCurrencies([ 
-            {name: "EUR", value: data.wallet.EUR},
-            {name: "USD", value: data.wallet.USD},
-            {name: "RUB", value: data.wallet.RUB},
+            {name: "EUR", value: EUR},
+            {name: "USD", value: USD},
+            {name: "RUB", value: RUB},
         ])
-    };
+    }, [EUR, USD, RUB])
+
+    // const onUpdateCurrency = () =>{
+    //     console.log(1);
+    //     dispatch(getUserData(login));
+    // };
 
     return(
         <div className='wallet'>
@@ -54,7 +63,7 @@ const Wallet = () => {
                             key={item.name} 
                             name={item.name} 
                             value={item.value}
-                            onUpdateCurrency={onUpdateCurrency} 
+                            // onUpdateCurrency={onUpdateCurrency} 
                             />
                     )
                 })}

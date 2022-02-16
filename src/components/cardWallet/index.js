@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';
 import ModalWindow from '../modalWindow';
+import { selectUserData, PostCurrency } from '../../slices/walletSlice';
 
 const CardWallet = ({name, value, onUpdateCurrency}) => {
 
+    const dispatch = useDispatch();
+
     const login = useSelector((state) => state.login.login);
+    const userData = useSelector(selectUserData);
+    const wallet = {...userData.wallet};
     
     const [cash, SetCash] = useState(false);
     const [showWindow, SetShowWindow] = useState(false);
@@ -20,41 +25,17 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
             changeValue = event.target.nextElementSibling.value * (-1);
         }
         let currencyName = event.target.parentElement.parentElement.id;
-        onDataCurrency(currencyName, changeValue);
-    };
-
-    const onDataCurrency = (currencyName, changeValue) =>{
-        fetch(`http://localhost:3001/profile?login=${login}`)
-        .then((res) => (res.json()))
-        .then((res) => onChangeDataCurrency(res[0], currencyName, changeValue))
-        .catch(() => console.log("get err"))
-    };
-
-    const onChangeDataCurrency = (data, currencyName, changeValue) => {
-        let newValue = data.wallet[currencyName] + +changeValue;
-        if (newValue >= 0){
-            data.wallet[currencyName] = newValue;   
-            onPostCurrency(data);
+        let newWalletValue = wallet[currencyName] + +changeValue;
+        if (newWalletValue >= 0){
+            SetCash(false);
+            wallet[currencyName] = newWalletValue;
+            const newUserData = {...userData, wallet};
+            // onUpdateCurrency();
+            dispatch(PostCurrency(login, newUserData));
         }else{
             showModalWindow('Insufficient funds');
             SetCash(false);
         }
-    };
-
-    const onPostCurrency = (data) => {
-        fetch(`http://localhost:3001/profile/${login}`,{
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(() => renderUpdate())
-    };
-
-    const renderUpdate = () => {
-        SetCash(false);
-        onUpdateCurrency();
     };
 
     const onVisibleInput = (value) =>{
@@ -71,7 +52,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
 
     return (
         <div className='card-wallet' id={name}>
-            <h3>{name}: {value}</h3>
+            <h3>{name}: {value }</h3>
             <div className='btn-change'>
                 {(!cash) && <button className='btn-change__cash-out' onClick={() => onVisibleInput(-1)}>CASH OUT</button>}
                 {(!cash) && <button className='btn-change__cash-in'onClick={() => onVisibleInput(1)}>CASH IN</button>}

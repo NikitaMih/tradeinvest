@@ -68,16 +68,9 @@
     justify-content: center;
     color: $light;
     font-weight: bolder;
-    font-size: 37px;
+    font-size: 4rem;
     text-decoration: none;
-    cursor: pointer;
 }
-
-.logo:hover{
-    color: $grey;
-    cursor: pointer;
-}
-
 
 .hero{
     display: flex;
