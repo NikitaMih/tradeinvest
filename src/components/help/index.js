@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './style.scss';
 import ModalWindow from '../modalWindow';
+import { SendMessage } from '../../slices/helpSlice';
 
 const Help = () => {
 
+    const dispatch = useDispatch();
+
+    const login = useSelector((state) => state.login.login);
     const [send, SetSend] = useState(false);
     const [title, SetTitle] = useState('');
     const [text, SetText] = useState('');
-
-    const login = useSelector((state) => state.login.login);
 
     let message = {
         id: title,
@@ -28,14 +30,8 @@ const Help = () => {
     };
 
     const onSendMessage = () => {
-            fetch("http://localhost:3001/help",{
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(message)
-            })
-            onSuccess();
+        dispatch(SendMessage(message));
+        onSuccess();
     };;
 
     const onSuccess = () =>{

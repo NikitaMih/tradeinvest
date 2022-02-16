@@ -15,14 +15,10 @@ const MainPage = () => {
 
    const showLogin = useSelector(selectShowLogin);
 
-   const onReloadClick = () =>{
-        window.location.reload()
-   };
-
     return (
         <div className='wrapper-main'>
             <header className='header'>
-                <div className='logo' onClick={onReloadClick}>T&I</div>
+                <div className='logo'>T&I</div>
                 <nav className='header__nav'>
                     <a href="#about">About</a>
                     <a href="#how-to-start">How to start</a>

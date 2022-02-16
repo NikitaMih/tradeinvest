@@ -44,9 +44,9 @@ const Portfolio = () => {
         const securitiesSum = calcCur.Apple + calcCur.Facebook + calcCur.Amazon;
         const currencySum = calcCur.EUR + calcCur.RUB + calcCur.USD;
         const totalAmount = cryptocurrencySum + securitiesSum + currencySum;
-        const percCryptocurrency = (cryptocurrencySum/totalAmount)*100;
-        const percSecurities = (securitiesSum/totalAmount)*100;
-        const percCurrency = (currencySum/totalAmount)*100;
+        const percCryptocurrency = (cryptocurrencySum/totalAmount) * 100;
+        const percSecurities = (securitiesSum/totalAmount) * 100;
+        const percCurrency = (currencySum/totalAmount) * 100;
         return [percCryptocurrency, percSecurities, percCurrency];
     };
 

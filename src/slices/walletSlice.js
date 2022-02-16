@@ -2,55 +2,68 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  login: "",
-  password: "",
-  error: false,
-  history: "",
-  showLogin: false,
+  userData: {},
+  EUR: '',
+  USD: '',
+  RUB: ''
 }
 
 export const walletSlice = createSlice({
   name: 'wallet',
   initialState,
   reducers: {
-    SetLogin: (state, action) => {
-        state.login = action.payload;
+    SetUserData: (state, action) => {
+      state.userData = action.payload;
     },
-    SetPassword: (state, action) => {
-        state.password = action.payload;
+    SetEUR: (state, action) => {
+      state.EUR = action.payload;
     },
-    SetError: (state, action) => {
-      state.error = action.payload;
+    SetUSD: (state, action) => {
+      state.USD = action.payload;
     },
-    SetHistory: (state) => {
-      state.history = '/account/trade/cryptocurrency';
-    },
-    SetShowLogin: (state, action) =>{
-      state.showLogin = action.payload;
+    SetRUB: (state, action) => {
+      state.RUB = action.payload;
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { SetLogin, SetPassword, SetError, SetHistory, SetShowLogin } = walletSlice.actions;
+export const { SetUserData, SetEUR, SetUSD, SetRUB} = walletSlice.actions;
 
 // Selectors
-export const selectLogin = (state) => state.login.login;
-export const selectPassword = (state) => state.login.password;
-export const selectError = (state) => state.login.error;
-export const selectHistory = (state) => state.login.history;
-export const selectShowLogin = (state) => state.login.showLogin;
+export const selectUserData = (state) => state.wallet.userData;
+export const selectUSD = (state) => state.wallet.USD;
+export const selectEUR = (state) => state.wallet.EUR;
+export const selectRUB = (state) => state.wallet.RUB;
 
 // Thunk actions 
-export const authorization = (login, password) => {
+export const getUserData = (login) =>{
   return async (dispatch) => {
     try{
       const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
-      password === res.data[0].password && dispatch(SetHistory());
-    } catch {
-      dispatch(SetError(true));
+      dispatch(SetUserData(res.data[0]));
+      dispatch(SetEUR(res.data[0].wallet.EUR));
+      dispatch(SetUSD(res.data[0].wallet.USD));
+      dispatch(SetRUB(res.data[0].wallet.RUB));
+    }catch {
+      console.log('err');;
     }
   }
-}
+};
+
+export const PostCurrency = (login, data) => {
+  return async (dispatch) => {
+    try{
+      await axios.put(`http://localhost:3001/profile/${login}`, data);
+      dispatch(SetUserData(data));
+      dispatch(SetEUR(data.wallet.EUR));
+      dispatch(SetUSD(data.wallet.USD));
+      dispatch(SetRUB(data.wallet.RUB));
+    } catch {
+      console.log('err');
+    }
+  }
+};
+
 
 export default walletSlice.reducer;

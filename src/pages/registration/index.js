@@ -11,10 +11,11 @@ const RegistrationPage = () => {
 
     const history = useHistory();
 
-    const [login, SetLogin] = useState();
-    const [password, SetPassword] = useState();
-    const [email, SetEmail] = useState();
-    const [phone, SetPhone] = useState();
+    const [login, SetLogin] = useState('');
+    const [password, SetPassword] = useState('');
+    const [confirmPassword, SetConfirmPassword] = useState('');
+    const [email, SetEmail] = useState('');
+    const [phone, SetPhone] = useState('');
     const [showWindow, SetShowWindow] = useState(false);
     const [textModal, SetTextModal] = useState('');
 
@@ -38,6 +39,26 @@ const RegistrationPage = () => {
     };
 
     const onPostData = () => {
+        if (login.length > 0 && password.length > 0 && email.length > 0 && phone.length > 0){
+            if(confirmPassword === password){
+                PostData();
+            } else {
+                SetTextModal('PASSWORD DOES NOT MATCH');
+                SetShowWindow(true);
+                setTimeout(() => {
+                    SetShowWindow(false);
+                }, 1500);
+            }
+        } else {
+            SetTextModal('FILL IN ALL THE DATA');
+            SetShowWindow(true);
+            setTimeout(() => {
+                SetShowWindow(false);
+            }, 1500);
+        }
+    };
+
+    const PostData = () => {
         fetch("http://localhost:3001/profile",{
             method: "POST",
             headers: {
@@ -65,6 +86,10 @@ const RegistrationPage = () => {
         SetPassword(event.target.value);
     };
 
+    const onChangeConfirmPassword = (event) => {
+        SetConfirmPassword(event.target.value);
+    };
+
     const onChangeEmail = (event) => {
         SetEmail(event.target.value);
     }; 
@@ -89,7 +114,7 @@ const RegistrationPage = () => {
                         </div>
                         <div>
                             <div className='registration-form__subtitle'>Confirm the password</div>
-                            <input type='password' className='registration-form__input'></input>
+                            <input type='password' className='registration-form__input' onChange={onChangeConfirmPassword}></input>
                         </div>
                     </div>
                     <div>
