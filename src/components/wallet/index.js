@@ -15,7 +15,6 @@ const Wallet = () => {
     const dispatch = useDispatch();
 
     const login = useSelector((state) => state.login.login);
-    // const userData = useSelector(selectUserData);
     const USD = useSelector(selectUSD);
     const EUR = useSelector(selectEUR);
     const RUB = useSelector(selectRUB);
@@ -47,11 +46,6 @@ const Wallet = () => {
         ])
     }, [EUR, USD, RUB])
 
-    // const onUpdateCurrency = () =>{
-    //     console.log(1);
-    //     dispatch(getUserData(login));
-    // };
-
     return(
         <div className='wallet'>
             <h3 className='account-title'>Wallet</h3>
@@ -63,7 +57,6 @@ const Wallet = () => {
                             key={item.name} 
                             name={item.name} 
                             value={item.value}
-                            // onUpdateCurrency={onUpdateCurrency} 
                             />
                     )
                 })}
