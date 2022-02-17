@@ -8,9 +8,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import {     
-    selectUserData, 
-    getUserData } from '../../slices/tradeSlice';
+import { getUserData } from '../../slices/tradeSlice';
 import { useHistory } from "react-router-dom";
 import CardTarde from "../cardTrade";
 import { BASECURRENCY } from '../../config/js/index';
@@ -21,7 +19,6 @@ const Trade = () => {
     const dispatch = useDispatch();
 
     const login = useSelector((state) => state.login.login);
-    const userData = useSelector(selectUserData);
 
     useEffect(() => {
         onUserData(login);
@@ -37,8 +34,6 @@ const Trade = () => {
         history.push(page);
         SetBlock(page);
     };
-
-    
 
     return(
         <div className='trade'>

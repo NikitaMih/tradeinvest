@@ -65,5 +65,4 @@ export const PostCurrency = (login, data) => {
   }
 };
 
-
 export default walletSlice.reducer;

@@ -30,7 +30,6 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
             SetCash(false);
             wallet[currencyName] = newWalletValue;
             const newUserData = {...userData, wallet};
-            // onUpdateCurrency();
             dispatch(PostCurrency(login, newUserData));
         }else{
             showModalWindow('Insufficient funds');

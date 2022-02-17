@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss';
 import {
@@ -16,8 +16,15 @@ import Help from '../../components/help';
 
 const AccountPage = () => {
 
+    const [activeBlok, SetActiveBlok] = useState('Trade');
+
     const onExit = () => {
+        localStorage.clear();
         location.replace('http://localhost:3000/');
+    };
+
+    const onChangeActiveBlok = (blok) => {
+        SetActiveBlok(blok)
     };
 
     return(
@@ -30,11 +37,27 @@ const AccountPage = () => {
                 <main className='account-main'>
                     <div className='nav'>
                         <nav className='nav__list'>
-                            <Link to="/account/portfolio">Portfolio</Link>
-                            <Link to="/account/trade/cryptocurrency">Trade</Link>
-                            <Link to="/account/wallet">Wallet</Link>
-                            <Link to="/account/profile">Profile</Link>
-                            <Link to="/account/help">Help</Link>
+                            <Link 
+                                to="/account/portfolio"
+                                style={{color: activeBlok === 'Portfolio' && '#929A9F'}}
+                                onClick={() => onChangeActiveBlok('Portfolio')}>Portfolio</Link>
+                            <Link 
+                                to="/account/trade/cryptocurrency"
+                                style={{color: activeBlok === 'Trade' && '#929A9F'}}
+                                onClick={() => onChangeActiveBlok('Trade')}>Trade</Link>
+                            <Link 
+                                to="/account/wallet"
+                                to="/account/trade/cryptocurrency"
+                                style={{color: activeBlok === 'Wallet' && '#929A9F'}}
+                                onClick={() => onChangeActiveBlok('Wallet')}>Wallet</Link>
+                            <Link 
+                                to="/account/profile"
+                                style={{color: activeBlok === 'Profile' && '#929A9F'}}
+                                onClick={() => onChangeActiveBlok('Profile')}>Profile</Link>
+                            <Link 
+                                to="/account/help"
+                                style={{color: activeBlok === 'Help' && '#929A9F'}}
+                                onClick={() => onChangeActiveBlok('Help')}>Help</Link>
                         </nav>
                     </div>
                     <div className='account-function-blok'>
