@@ -67,11 +67,12 @@
     &__btn{
         align-self: flex-end;
         text-align: center;
+        vertical-align:middle;
         background-color: $green;
         width: 30%;
         border-radius: 1em;
         height: 1.5em; 
-        padding: 0.5em;
+        padding: 0.8em 0 0.5em 0;
         margin: 1em 0 0 0;
         border: none; 
         font-size: 1.2rem;

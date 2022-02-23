@@ -59,25 +59,25 @@ const Portfolio = () => {
                 <div className='currency__blok'>
                     <h3 className='currency__title'>Cryptocurrency</h3>
                     <ul className='currency__list'>
-                        <li>BTC: {userData?.wallet?.BTC}</li>
-                        <li>ETH: {userData?.wallet?.ETH}</li>
-                        <li>Litecoin: {userData?.wallet?.Litecoin}</li>
+                        <li>BTC: {(userData?.wallet?.BTC)?.toLocaleString('ru')}</li>
+                        <li>ETH: {(userData?.wallet?.ETH)?.toLocaleString('ru')}</li>
+                        <li>Litecoin: {(userData?.wallet?.Litecoin)?.toLocaleString('ru')}</li>
                     </ul>
                 </div>
                 <div className='currency__blok'>
                     <h3 className='currency__title'>Securities</h3>
                     <ul className='currency__list'>
-                        <li>Apple: {userData?.wallet?.Apple}</li>
-                        <li>Facebook: {userData?.wallet?.Facebook}</li>
-                        <li>Amazon: {userData?.wallet?.Amazon}</li>
+                        <li>Apple: {(userData?.wallet?.Apple)?.toLocaleString('ru')}</li>
+                        <li>Facebook: {(userData?.wallet?.Facebook)?.toLocaleString('ru')}</li>
+                        <li>Amazon: {(userData?.wallet?.Amazon)?.toLocaleString('ru')}</li>
                     </ul>
                 </div>
                 <div className='currency__blok'>
                     <h3 className='currency__title'>Currency</h3>
                     <ul  className='currency__list'>
-                        <li>USD: {userData?.wallet?.USD}</li>
-                        <li>EUR: {userData?.wallet?.EUR}</li>
-                        <li>RUB: {userData?.wallet?.RUB}</li>
+                        <li>USD: {(userData?.wallet?.USD)?.toLocaleString('ru')}</li>
+                        <li>EUR: {(userData?.wallet?.EUR)?.toLocaleString('ru')}</li>
+                        <li>RUB: {(userData?.wallet?.RUB)?.toLocaleString('ru')}</li>
                     </ul>
                 </div>
             </div>

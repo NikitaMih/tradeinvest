@@ -5,6 +5,7 @@ const initialState = {
   userData: {},
   email: '',
   phone: '',
+  showChangePasswordWindow: false,
 }
 
 export const profileSlice = createSlice({
@@ -19,17 +20,21 @@ export const profileSlice = createSlice({
     },
     SetPhone: (state, action) => {
       state.phone = action.payload;
-    }
+    },
+    SetShowChangePasswordWindow: (state, action) => {
+        state.showChangePasswordWindow = action.payload;
+      }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { SetUserData, SetEmail, SetPhone } = profileSlice.actions;
+export const { SetUserData, SetEmail, SetPhone, SetShowChangePasswordWindow } = profileSlice.actions;
 
 // Selectors
 export const selectUserData = (state) => state.profile.userData;
 export const selectEmail = (state) => state.profile.email;
 export const selectPhone = (state) => state.profile.phone;
+export const selectShowChangePasswordWindow = (state) => state.profile.showChangePasswordWindow;
 
 // Thunk actions 
 export const GetProfileData = (login) => {
@@ -47,7 +52,7 @@ export const GetProfileData = (login) => {
 
 export const PostProfileData = async (login, data) => {
     try{
-        await axios.put(`http://localhost:3001/profile/${login}`,data)
+        await axios.put(`http://localhost:3001/profile/${login}`,data);
     } catch {
         console.log("err");
     }

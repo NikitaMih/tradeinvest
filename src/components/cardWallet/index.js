@@ -51,7 +51,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
 
     return (
         <div className='card-wallet' id={name}>
-            <h3>{name}: {value }</h3>
+            <h3>{name}: {(value).toLocaleString('ru')}</h3>
             <div className='btn-change'>
                 {(!cash) && <button className='btn-change__cash-out' onClick={() => onVisibleInput(-1)}>CASH OUT</button>}
                 {(!cash) && <button className='btn-change__cash-in'onClick={() => onVisibleInput(1)}>CASH IN</button>}
