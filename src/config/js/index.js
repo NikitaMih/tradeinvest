@@ -4,19 +4,19 @@ export const BASECURRENCY = {
         name: 'BTC',
         changeCurrency: 'BTC',
         referenceCurrency: 'USD',
-        value: '42123.432'
+        value: 42123.432
        },
        {
         name: 'ETH',
         changeCurrency: 'ETH',
         referenceCurrency: 'USD',
-        value: '3067.812'
+        value: 3067.812
        },
        {
         name: 'Litecoin',
         changeCurrency: 'Litecoin',
         referenceCurrency: 'USD',
-        value: '102.128'
+        value: 102.128
        },
     ],
     securities: [
@@ -24,19 +24,19 @@ export const BASECURRENCY = {
          name: 'Apple',
          changeCurrency: 'Apple',
          referenceCurrency: 'USD',
-         value: '156.569'
+         value: 156.569
         },
         {
          name: 'Facebook',
          changeCurrency: 'Facebook',
          referenceCurrency: 'USD',
-         value: '299.842'
+         value: 299.842
         },
         {
          name: 'Amazon',
          changeCurrency: 'Amazon',
          referenceCurrency: 'USD',
-         value: '2777.128'
+         value: 2777.128
         },
      ],
      currency: [
@@ -44,13 +44,13 @@ export const BASECURRENCY = {
          name: 'EUR/USD',
          changeCurrency: 'EUR',
          referenceCurrency: 'USD',
-         value: '1.13'
+         value: 1.13
         },
         {
          name: 'RUB/USD',
          changeCurrency: 'RUB',
          referenceCurrency: 'USD',
-         value: '0.013'
+         value: 0.013
         },
      ]
 

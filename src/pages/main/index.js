@@ -26,7 +26,7 @@ const MainPage = () => {
                     <a href="#contacts">Contacts</a>
                 </nav>
                 <div className='header__login' onClick={() => dispatch(SetShowLogin(true))}>LOG IN</div>
-                <Link to="/registration" className='header__sing-up'>SING UP</Link>
+                <Link to="/registration" className='header__sing-up'>SIGN UP</Link>
             </header>
             <main>
                 <div className='hero'>
@@ -93,8 +93,8 @@ const MainPage = () => {
                             42686.70
                         </div>
                         <div className='trade-card__action'>
-                            <div className='trade-card__action-buy'>BUY</div>
-                            <div className='trade-card__action-sell'>SELL</div>
+                            <div className='trade-card__action-buy' onClick={() => dispatch(SetShowLogin(true))}>BUY</div>
+                            <div className='trade-card__action-sell' onClick={() => dispatch(SetShowLogin(true))}>SELL</div>
                         </div>
                     </div>
                     <div className='trade-card'>
@@ -105,8 +105,8 @@ const MainPage = () => {
                             174.92
                         </div>
                         <div className='trade-card__action'>
-                            <div className='trade-card__action-buy'>BUY</div>
-                            <div className='trade-card__action-sell'>SELL</div>
+                            <div className='trade-card__action-buy' onClick={() => dispatch(SetShowLogin(true))}>BUY</div>
+                            <div className='trade-card__action-sell' onClick={() => dispatch(SetShowLogin(true))}>SELL</div>
                         </div>
                     </div>
                     <div className='trade-card'>
@@ -117,8 +117,8 @@ const MainPage = () => {
                             1.13
                         </div>
                         <div className='trade-card__action'>
-                            <div className='trade-card__action-buy'>BUY</div>
-                            <div className='trade-card__action-sell'>SELL</div>
+                            <div className='trade-card__action-buy' onClick={() => dispatch(SetShowLogin(true))}>BUY</div>
+                            <div className='trade-card__action-sell' onClick={() => dispatch(SetShowLogin(true))}>SELL</div>
                         </div>
                     </div>
                 </div>

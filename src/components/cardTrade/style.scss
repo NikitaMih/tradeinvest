@@ -26,9 +26,15 @@
     }
 
     &__value{
+        display: flex;
         font-size: 2rem;
         color: $light;
         align-self: center;
+        
+        &-perc{
+            font-size: 1rem;
+            margin: 0 1em;
+        }
     }
 
     &__action-buy{

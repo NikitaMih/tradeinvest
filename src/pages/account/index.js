@@ -4,7 +4,6 @@ import './style.scss';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
     Link,
   } from "react-router-dom";
 
@@ -32,7 +31,7 @@ const AccountPage = () => {
             <div className='wrapper'>
                 <header className='header-account'>
                     <div className='logo'>T&I</div>
-                    <div className='exit' onClick={onExit}>exit</div>
+                    <img className='exit' src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/344/external-logout-ui-dreamstale-lineal-dreamstale.png" onClick={onExit}/>
                 </header>
                 <main className='account-main'>
                     <div className='nav'>
@@ -47,7 +46,6 @@ const AccountPage = () => {
                                 onClick={() => onChangeActiveBlok('Trade')}>Trade</Link>
                             <Link 
                                 to="/account/wallet"
-                                to="/account/trade/cryptocurrency"
                                 style={{color: activeBlok === 'Wallet' && '#929A9F'}}
                                 onClick={() => onChangeActiveBlok('Wallet')}>Wallet</Link>
                             <Link 
