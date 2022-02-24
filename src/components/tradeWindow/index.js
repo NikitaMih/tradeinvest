@@ -114,7 +114,7 @@ const TradeWindow = () => {
                         <div className='trade-window__info-rate'>Rate: {(rate).toLocaleString('ru')} {changeCurrency}</div>
                         <input className='trade-window__info-input' type='number' onChange={(event) => changeCost(event.target.value)}></input>
                         <div className='trade-window__info-balance'>Balance: { type === 'BUY' ? wallet[changeCurrency].toLocaleString('ru') : wallet[referenceCurrency].toLocaleString('ru')} {type === 'BUY' ? changeCurrency : referenceCurrency}</div>
-                        <div>Your need: {sumYouNeed}</div>
+                        <div>Your need: {(+sumYouNeed).toLocaleString('ru')}</div>
                         <button style={{backgroundColor:colorBtn}} onClick={changeUserData}>{type}</button>
                     </div>
                 </div>
