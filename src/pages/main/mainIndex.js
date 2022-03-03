@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss'
+import './mainStyle.scss'
 import {
     BrowserRouter as Router,
     Link
   } from "react-router-dom";
 import { selectShowLogin, SetShowLogin } from '../../slices/loginSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import Login from "../../components/login";
+import Login from "../../components/login/loginIndex";
 
 const MainPage = () => {
 

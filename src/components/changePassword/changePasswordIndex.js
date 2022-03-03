@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './changePasswordStyle.scss';
 import { 
     selectUserData,
     SetShowChangePasswordWindow,
     PostProfileData } from '../../slices/profileSlice';
-import ModalWindow from '../modalWindow';
+import ModalWindow from '../modalWindow/modalWindowIndex';
 
 const ChangePassword = () => {
 

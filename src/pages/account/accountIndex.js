@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './accountStyle.scss';
 import {
     BrowserRouter as Router,
     Switch,
     Link,
   } from "react-router-dom";
 
-import Portfolio from '../../components/portfolio';
-import Trade from '../../components/trade';
-import Wallet from "../../components/wallet";
-import Profile from '../../components/profile';
-import Help from '../../components/help';
+import Portfolio from '../../components/portfolio/portfolioIndex';
+import Trade from '../../components/trade/tradeIndex';
+import Wallet from "../../components/wallet/walletIndex";
+import Profile from '../../components/profile/profileIndex';
+import Help from '../../components/help/helpIndex';
 
 const AccountPage = () => {
 

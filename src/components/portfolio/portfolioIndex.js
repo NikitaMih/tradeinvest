@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
-import PieChart from '../pieChart';
+import './portfolioStyle.scss';
+import PieChart from '../pieChart/pieChart';
 import { selectLogin } from '../../slices/loginSlice';
 import { selectUserData, getUserData } from '../../slices/portfolioSlice';
 import { BASERATE } from '../../config/js/index';

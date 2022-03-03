@@ -48,6 +48,10 @@
             color: $grey;
         }
 
+        &__label{
+            border-radius: 50%;
+        }
+
         &__btn-send{
             background-color: $green;
             width: 100%;

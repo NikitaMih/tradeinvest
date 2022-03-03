@@ -8,10 +8,11 @@ import {
     selectHistory, 
     SetLogin, 
     SetPassword,
-    SetShowLogin, 
+    SetShowLogin,
+    SetError,
     authorization 
 } from '../../slices/loginSlice';
-import './style.scss';
+import './loginStyle.scss';
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
@@ -33,6 +34,7 @@ const Login = () => {
     }
 
     const onCancel = () => {
+        dispatch(SetError(false));
         dispatch(SetShowLogin(false));
     }
 
