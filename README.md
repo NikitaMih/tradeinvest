@@ -87,15 +87,15 @@ Trade and Invest is a virtual platform, where you can purchase various types of 
     ```
    npm i
     ```
-3. Перейти в директорию с сервером (\tradeinvest\json-server) и выполнить команду (после выполнения команды на потру http://localhost:3001 развернется json-server):
+3. Выполнить команду (после выполнения команды на потру http://localhost:3000 развернется проект):
     ```
    npm start
     ```  
-или скрипт (babel-node -- src/cli/bin db.json -r routes.json--port 3001)
+или скрипт (react-scripts start)
 
-4. Перейти в директорию с проектом (\tradeinvest)  и выполнить команду:
+4. Для запуска секвера выполнить скрипт:
     ```
-   npm start
+   json-server --watch db.json ---post 3001
     ``` 
     
-или скрипт (react-scripts start)
+После выполнения на порту http://localhost:3001 развернется json-server.
