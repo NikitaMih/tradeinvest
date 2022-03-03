@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import './style.scss';
+import './profileStyle.scss';
 import { 
     selectUserData,
     selectEmail,
@@ -12,7 +12,7 @@ import {
     SetShowChangePasswordWindow,
     GetProfileData,
     PostProfileData } from '../../slices/profileSlice';
-import ChangePassword from '../../components/changePassword';
+import ChangePassword from '../changePassword/changePasswordIndex';
 
 const Profile = () => {
 

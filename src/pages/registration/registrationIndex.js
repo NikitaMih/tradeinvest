@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './registrationStyle.scss';
 import {
     BrowserRouter as Router,
     useHistory
   } from "react-router-dom";
-import ModalWindow from '../../components/modalWindow';
+import ModalWindow from '../../components/modalWindow/modalWindowIndex';
 
 const RegistrationPage = () => {
 
@@ -68,8 +68,8 @@ const RegistrationPage = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
-        });
-        goMain()
+        }).then(() => goMain())
+        .catch(() => alert('Error connect with server'))
     };
 
     const goMain = () => {
@@ -119,7 +119,9 @@ const RegistrationPage = () => {
                                 <div>Password</div>
                                 <div style={{color:errPassword}}>Password does not meet security requirements</div>
                             </div>
-                            <input type='password' className='registration-form__input' onChange={onChangePassword}></input>
+                            <label title='Password must include a minimum of 6 characters, both upper and lower case, and at least one number.'>
+                                <input type='password' className='registration-form__input' onChange={onChangePassword}></input>
+                            </label>
                         </div>
                         <div>
                             <div className='registration-form__subtitle'>
@@ -141,7 +143,9 @@ const RegistrationPage = () => {
                             <div>Phone</div>
                             <div style={{color:errPhone}}>Phone incorrect</div>
                         </div>
-                        <input type='text' className='registration-form__input' onChange={onChangePhone}></input>
+                        <label title='+375 ( .. ) ... - .. - ..'>
+                            <input type='text' className='registration-form__input' onChange={onChangePhone}></input>
+                        </label>   
                     </div>
                     <button className='registration-form__btn-send' onClick={onPostData}>SIGN UP</button>
                 </div>

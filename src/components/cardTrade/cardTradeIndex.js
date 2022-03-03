@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
-import TradeWindow from '../tradeWindow';
+import './cardTradeStyle.scss';
+import TradeWindow from '../tradeWindow/tradeWindowIndex';
 import {
     SetCardName, 
     SetCardRate,

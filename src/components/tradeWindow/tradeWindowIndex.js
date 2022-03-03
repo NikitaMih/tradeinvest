@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './tradeWindowStyle.scss';
 import {
     SetUserData,
     SetShowTradeWindow,
@@ -13,8 +13,8 @@ import {
     postUserData,
     selectReferenceCurrency
  } from '../../slices/tradeSlice';
-import LineChart from '../lineChart';
-import ModalWindow from '../modalWindow';
+import LineChart from '../lineChart/lineChart';
+import ModalWindow from '../modalWindow/modalWindowIndex';
 
 const TradeWindow = () => {
 
@@ -40,9 +40,9 @@ const TradeWindow = () => {
         const count = +rate * +cost;
         const balanceReference = userData.wallet[referenceCurrency];
         const balanceChange  = userData.wallet[changeCurrency];
+        let newBalanceChange = 0;
+        let newBalanceReference = 0;
         if(type === 'BUY'){
-            let newBalanceChange = 0;
-            let newBalanceReference = 0;
             newBalanceChange = +balanceChange - +count;
             if(newBalanceChange >= 0){
                 newBalanceReference = +balanceReference + +cost;
@@ -51,14 +51,12 @@ const TradeWindow = () => {
                 const newUserData = {...userData, wallet}
                 dispatch(SetUserData(newUserData));
                 dispatch(postUserData(login, newUserData));
-                showModalWindow('SUCCESS');
+                showModalWindow('SUCCESS'); 
             }else{
                 showModalWindow(`Insufficient funds ${changeCurrency}`);
             }
         }
         if(type === 'SELL'){
-            let newBalanceChange = 0;
-            let newBalanceReference = 0;
             newBalanceReference = +balanceReference - +cost;
             if(newBalanceReference >= 0){
                 newBalanceChange = +balanceChange + +count;
@@ -67,12 +65,11 @@ const TradeWindow = () => {
                 const newUserData = {...userData, wallet}
                 dispatch(SetUserData(newUserData));
                 dispatch(postUserData(login, newUserData));
-                showModalWindow('SUCCESS');
+                showModalWindow('SUCCESS'); 
             }else{
                 showModalWindow(`Insufficient funds ${referenceCurrency}`);
             }
         }
-    
     };
 
     const showModalWindow = (text) => {

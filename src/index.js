@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.scss';
 import store, { persister } from './store';
-import Navigation from './navigation';
+import Navigation from './navigation/navigator';
 
 ReactDOM.render(
   <React.StrictMode>

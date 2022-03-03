@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
-import CardWallet from "../cardWallet";
+import './walletStyle.scss';
+import CardWallet from "../cardWallet/cardWalletIndex";
 import { 
     selectUserData,
     selectUSD,

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import './style.scss';
-import ModalWindow from '../modalWindow';
+import './cardWalletStyle.scss';
+import ModalWindow from '../modalWindow/modalWindowIndex';
 import { selectUserData, PostCurrency } from '../../slices/walletSlice';
 
 const CardWallet = ({name, value, onUpdateCurrency}) => {

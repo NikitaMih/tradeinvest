@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './tradeStyle.scss';
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,7 +10,7 @@ import {
   } from "react-router-dom";
 import { getUserData } from '../../slices/tradeSlice';
 import { useHistory } from "react-router-dom";
-import CardTarde from "../cardTrade";
+import CardTarde from "../cardTrade/cardTradeIndex";
 import { BASECURRENCY } from '../../config/js/index';
 
 const Trade = () => {

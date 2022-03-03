@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './style.scss';
-import ModalWindow from '../modalWindow';
+import './helpStyle.scss';
+import ModalWindow from '../modalWindow/modalWindowIndex';
 import { SendMessage } from '../../slices/helpSlice';
 
 const Help = () => {
