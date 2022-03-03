@@ -95,7 +95,7 @@ Trade and Invest is a virtual platform, where you can purchase various types of 
 
 4. Для запуска секвера выполнить скрипт:
     ```
-   json-server --watch db.json ---post 3001
+   json-server --watch db.json --port 3001
     ``` 
     
 После выполнения на порту http://localhost:3001 развернется json-server.
