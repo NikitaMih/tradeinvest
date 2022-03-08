@@ -89,7 +89,6 @@ http://localhost:3001/help - содержит информацию о сообщ
     ```
    npm i
     ```
-    ```
 3. Установить json-server, если ранее не был установлен;
     ```
    npm install -g json-server
