@@ -1,78 +1,6 @@
 {
   "profile": [
     {
-      "id": "9",
-      "login": "9",
-      "password": "9",
-      "email": "10",
-      "phone": "9",
-      "wallet": {
-        "EUR": 0,
-        "RUB": 0,
-        "USD": 1006309.328,
-        "BTC": 0,
-        "ETH": 23,
-        "Litecoin": 0,
-        "Apple": 12,
-        "Facebook": 0,
-        "Amazon": 56
-      }
-    },
-    {
-      "id": "Nikita",
-      "login": "Nikita",
-      "password": "Nikita123",
-      "email": "nik96mi@hmai.lru",
-      "phone": "+375293993192",
-      "wallet": {
-        "EUR": 500,
-        "RUB": 10000,
-        "USD": 1093.932,
-        "BTC": 0,
-        "ETH": 0,
-        "Litecoin": 3,
-        "Apple": 0,
-        "Facebook": 2,
-        "Amazon": 0
-      }
-    },
-    {
-      "id": "1",
-      "login": "1",
-      "password": "AQsw12",
-      "email": "nik96mih@mail.ru",
-      "phone": "+375293993198",
-      "wallet": {
-        "EUR": 0,
-        "RUB": 0,
-        "USD": 0,
-        "BTC": 0,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 0,
-        "Facebook": 0,
-        "Amazon": 0
-      }
-    },
-    {
-      "id": "Kate",
-      "login": "Kate",
-      "password": "Kk123456",
-      "email": "Kate@Gm.ru",
-      "phone": "+375293456723w",
-      "wallet": {
-        "EUR": 0,
-        "RUB": 0,
-        "USD": -116370.296,
-        "BTC": 0,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 0,
-        "Facebook": 0,
-        "Amazon": -100011
-      }
-    },
-    {
       "id": "NikitaTest",
       "login": "NikitaTest",
       "password": "Test123",
@@ -89,121 +17,14 @@
         "Facebook": 0,
         "Amazon": 0
       }
-    },
-    {
-      "id": "123",
-      "login": "123",
-      "password": "12345Qw",
-      "email": "nik96mih@mail.ru",
-      "phone": "+375(29)399-11-11",
-      "wallet": {
-        "EUR": 0,
-        "RUB": 0,
-        "USD": 0,
-        "BTC": 0,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 0,
-        "Facebook": 0,
-        "Amazon": 0
-      }
-    },
-    {
-      "login": "Nikita",
-      "password": "Nikita123",
-      "id": "oofI-Xq"
-    },
-    {
-      "id": "Katee",
-      "login": "Katee",
-      "password": "K111111k",
-      "email": "Kate@mail.ru",
-      "phone": "+375298976234wert",
-      "wallet": {
-        "EUR": 1000000000,
-        "RUB": 100000,
-        "USD": 98842906525725.92,
-        "BTC": 10000,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 1000000010,
-        "Facebook": 9998,
-        "Amazon": 98
-      }
-    },
-    {
-      "id": "MihTest",
-      "login": "MihTest",
-      "password": "Nik96mih",
-      "email": "mihtest@mail.ru",
-      "phone": "+375292222222",
-      "wallet": {
-        "EUR": 1001,
-        "RUB": 10000000,
-        "USD": 813966.309,
-        "BTC": 1,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 1,
-        "Facebook": 3,
-        "Amazon": 5
-      }
     }
   ],
   "help": [
-    {
-      "id": "Привет",
-      "login": "Nikita",
-      "title": "Привет",
-      "text": "Проверка"
-    },
-    {
-      "id": "LfrrwnL",
-      "login": "Kate",
-      "title": "",
-      "text": ""
-    },
-    {
-      "id": "v7Zoz6w",
-      "login": "Kate",
-      "title": "",
-      "text": ""
-    },
     {
       "id": "1",
       "login": "NikitaTest",
       "title": "1",
       "text": "1"
-    },
-    {
-      "id": "2",
-      "login": "NikitaTest",
-      "title": "2",
-      "text": "2"
-    },
-    {
-      "id": "4",
-      "login": "NikitaTest",
-      "title": "4",
-      "text": "4"
-    },
-    {
-      "id": "6",
-      "login": "NikitaTest",
-      "title": "6",
-      "text": "6"
-    },
-    {
-      "id": "34",
-      "login": "NikitaTest",
-      "title": "34",
-      "text": "34"
-    },
-    {
-      "id": "MihTest",
-      "login": "MihTest",
-      "title": "MihTest",
-      "text": "123"
     }
   ]
 }
