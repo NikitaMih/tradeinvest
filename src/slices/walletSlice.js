@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseUrl } from '../config/js';
 
 const initialState = {
   userData: {},
@@ -40,7 +41,7 @@ export const selectRUB = (state) => state.wallet.RUB;
 export const getUserData = (login) =>{
   return async (dispatch) => {
     try{
-      const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
+      const res = await axios.get(baseUrl + `/profile?login=${login}`);
       dispatch(SetUserData(res.data[0]));
       dispatch(SetEUR(res.data[0].wallet.EUR));
       dispatch(SetUSD(res.data[0].wallet.USD));
@@ -54,7 +55,7 @@ export const getUserData = (login) =>{
 export const PostCurrency = (login, data) => {
   return async (dispatch) => {
     try{
-      await axios.put(`http://localhost:3001/profile/${login}`, data);
+      await axios.put(baseUrl + `/profile/${login}`, data);
       dispatch(SetUserData(data));
       dispatch(SetEUR(data.wallet.EUR));
       dispatch(SetUSD(data.wallet.USD));

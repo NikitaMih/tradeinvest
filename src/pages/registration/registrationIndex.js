@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import './registrationStyle.scss';
 import {
     BrowserRouter as Router,
     useHistory
   } from "react-router-dom";
 import ModalWindow from '../../components/modalWindow/modalWindowIndex';
+import { colors } from '../../config/js';
 
 const RegistrationPage = () => {
 
@@ -19,13 +19,15 @@ const RegistrationPage = () => {
     const [showWindow, SetShowWindow] = useState(false);
     const [textModal, SetTextModal] = useState('');
 
-    const [errLogin, SetErrLogin] = useState('#292929');
-    const [errPassword, SetErrPassword] = useState('#292929');
-    const [errConfirmPassword, SetErrConfirmPassword] = useState('#292929');
-    const [errEmail, SetErrEmail] = useState('#292929');
-    const [errPhone, SetErrPhone] = useState('#292929');
+    const [errLogin, SetErrLogin] = useState(colors.dark);
+    const [errPassword, SetErrPassword] = useState(colors.dark);
+    const [errConfirmPassword, SetErrConfirmPassword] = useState(colors.dark);
+    const [errEmail, SetErrEmail] = useState(colors.dark);
+    const [errPhone, SetErrPhone] = useState(colors.dark);
+    const [showPasswordImg, SetShowPasswordImg] = useState('https://cdn-icons.flaticon.com/png/512/2355/premium/2355322.png?token=exp=1646655405~hmac=d64501c5786ffcda3342b962fb8ccfa7');
+    const [showConfirmPasswordImg, SetShowConfirmPasswordImg] = useState('https://cdn-icons.flaticon.com/png/512/2355/premium/2355322.png?token=exp=1646655405~hmac=d64501c5786ffcda3342b962fb8ccfa7');
 
-    let formData = {
+        let formData = {
         id: login,
         login: login,
         password: password,
@@ -45,16 +47,16 @@ const RegistrationPage = () => {
     };
 
     const onPostData = () => {
-       
+
        const rePassword = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/i; 
        const reEmail = /^[\w]{1}[\w\.]*@[\w]+\.[a-z]{2,4}$/i;
        const rePhone = /(\+375)[\s(]*\d{2}[)\s]*\d{3}[\s-]?\d{2}[\s-]?\d{2}/i;
 
-        login.length > 0 ? SetErrLogin('#292929') : SetErrLogin('#CB4335');
-        rePassword.test(password) ? SetErrPassword('#292929') : SetErrPassword('#CB4335');
-        password === confirmPassword ? SetErrConfirmPassword('#292929') : SetErrConfirmPassword('#CB4335');
-        reEmail.test(email) ? SetErrEmail('#292929') : SetErrEmail('#CB4335');
-        rePhone.test(phone) ? SetErrPhone('#292929') : SetErrPhone('#CB4335');
+        login.length > 0 ? SetErrLogin(colors.dark) : SetErrLogin(colors.red);
+        rePassword.test(password) ? SetErrPassword(colors.dark) : SetErrPassword(colors.red);
+        password === confirmPassword ? SetErrConfirmPassword(colors.dark) : SetErrConfirmPassword(colors.red);
+        reEmail.test(email) ? SetErrEmail(colors.dark) : SetErrEmail(colors.red);
+        rePhone.test(phone) ? SetErrPhone(colors.dark) : SetErrPhone(colors.red);
 
         if(login.length > 0 && rePassword.test(password) && password === confirmPassword && reEmail.test(email) && rePhone.test(phone)){
             PostData();
@@ -101,6 +103,21 @@ const RegistrationPage = () => {
         SetPhone(event.target.value);
     };
 
+    const onShowPassword = () => {
+        const inputPassword = document.getElementById('input-password-registration');
+        if(inputPassword.value.length > 0){
+            inputPassword.type === 'password' ? inputPassword.type = 'text' : inputPassword.type = 'password';
+            inputPassword.type === 'password' ? SetShowPasswordImg('https://cdn-icons.flaticon.com/png/512/2355/premium/2355322.png?token=exp=1646655405~hmac=d64501c5786ffcda3342b962fb8ccfa7') : SetShowPasswordImg('https://cdn-icons.flaticon.com/png/512/2874/premium/2874802.png?token=exp=1646655582~hmac=4ac654f7f07e6dbc25d2ce9998dfbe33'); 
+        }
+    }
+
+    const onShowConfirmPassword = (input) => {
+        if(input.value.length > 0){
+            input.type === 'password' ? input.type = 'text' : input.type = 'password';
+            input.type === 'password' ? SetShowConfirmPasswordImg('https://cdn-icons.flaticon.com/png/512/2355/premium/2355322.png?token=exp=1646655405~hmac=d64501c5786ffcda3342b962fb8ccfa7') : SetShowConfirmPasswordImg('https://cdn-icons.flaticon.com/png/512/2874/premium/2874802.png?token=exp=1646655582~hmac=4ac654f7f07e6dbc25d2ce9998dfbe33'); 
+        }
+    }
+
     return(
         <div className='registration'>
             <div className='registration__blok-form'>
@@ -119,16 +136,42 @@ const RegistrationPage = () => {
                                 <div>Password</div>
                                 <div style={{color:errPassword}}>Password does not meet security requirements</div>
                             </div>
-                            <label title='Password must include a minimum of 6 characters, both upper and lower case, and at least one number.'>
-                                <input type='password' className='registration-form__input' onChange={onChangePassword}></input>
-                            </label>
+                            <div className='registration-form__input'>
+                                <label title='Password must include a minimum of 6 characters, both upper and lower case, and at least one number.'>
+                                    <input id='input-password-registration' type='password' className='input-password-registration' onChange={onChangePassword}></input>
+                                </label>
+                                <label className='check'>
+                                    <input 
+                                        type="checkbox" 
+                                        className='check__input'  
+                                        onClick={(event) => onShowPassword(event.target.parentElement.previousSibling)}>
+                                    </input>
+                                    <span 
+                                        className='check__box'
+                                        style={{backgroundImage: `url(${showPasswordImg})`}}>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                         <div>
-                            <div className='registration-form__subtitle'>
+                            <div className='registration-form__subtitle password'>
                                 <div>Confirm the password</div>
                                 <div style={{color:errConfirmPassword}}>Password does not match</div>
                             </div>
-                            <input type='password' className='registration-form__input' onChange={onChangeConfirmPassword}></input>
+                            <div className='registration-form__input' >
+                                <input type='password' className='input-password-registration' onChange={onChangeConfirmPassword}></input>
+                                <label className='check'>
+                                    <input 
+                                        type="checkbox" 
+                                        className='check__input'  
+                                        onClick={(event) => onShowConfirmPassword(event.target.parentElement.previousSibling)}>
+                                    </input>
+                                    <span 
+                                        className='check__box'
+                                        style={{backgroundImage: `url(${showConfirmPasswordImg})`}}>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -143,9 +186,7 @@ const RegistrationPage = () => {
                             <div>Phone</div>
                             <div style={{color:errPhone}}>Phone incorrect</div>
                         </div>
-                        <label title='+375 ( .. ) ... - .. - ..'>
-                            <input type='text' className='registration-form__input' onChange={onChangePhone}></input>
-                        </label>   
+                        <input placeholder='+375(**) *** - ** - **' type='text' className='registration-form__input' onChange={onChangePhone}></input>   
                     </div>
                     <button className='registration-form__btn-send' onClick={onPostData}>SIGN UP</button>
                 </div>

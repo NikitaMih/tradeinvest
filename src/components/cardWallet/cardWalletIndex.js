@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './cardWalletStyle.scss';
 import ModalWindow from '../modalWindow/modalWindowIndex';
+import { selectLogin } from '../../slices/loginSlice';
 import { selectUserData, PostCurrency } from '../../slices/walletSlice';
 
-const CardWallet = ({name, value, onUpdateCurrency}) => {
+const CardWallet = ({name, value}) => {
 
     const dispatch = useDispatch();
 
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
     const userData = useSelector(selectUserData);
     const wallet = {...userData.wallet};
     
@@ -18,7 +18,7 @@ const CardWallet = ({name, value, onUpdateCurrency}) => {
     const [textModal, SetTextModal] = useState('');
 
     const onChangeCash = (change) => {
-        let changeValue = null 
+        let changeValue = null; 
         if (change === 1){
             changeValue = event.target.previousSibling.value;
         }else{

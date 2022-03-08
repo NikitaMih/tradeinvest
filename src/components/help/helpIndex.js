@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './helpStyle.scss';
 import ModalWindow from '../modalWindow/modalWindowIndex';
 import { SendMessage } from '../../slices/helpSlice';
+import { selectLogin } from '../../slices/loginSlice';
 
 const Help = () => {
 
     const dispatch = useDispatch();
 
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
     const [send, SetSend] = useState(false);
     const [title, SetTitle] = useState('');
     const [text, SetText] = useState('');
+    const [showWindow, SetShowWindow] = useState(false);
+    const [textModal, SetTextModal] = useState('');
 
     let message = {
         id: title,
@@ -30,15 +32,26 @@ const Help = () => {
     };
 
     const onSendMessage = () => {
-        dispatch(SendMessage(message));
-        onSuccess();
-    };;
+        if(title.length > 0 && text.length > 0){
+            dispatch(SendMessage(message));
+            onSuccess();
+        }else{
+            showModalWindow('Please, complete all fields');
+        }
+    };
+
+    const showModalWindow = (text) => {
+        SetTextModal(text);
+        SetShowWindow(true);
+        setTimeout(() => {
+            SetShowWindow(false);
+        }, 1000);
+    };
 
     const onSuccess = () =>{
-        SetSend(true)
-        SetTitle('')
+        SetTitle('');
         SetText('');
-        setTimeout(() => SetSend(false), 1000)
+        showModalWindow('SUCCESS');
     };
 
     return(
@@ -61,7 +74,7 @@ const Help = () => {
                     </textarea>
                     <div className='help-form__btn' onClick={onSendMessage}>SEND</div>
                 </div>
-            {send && <ModalWindow text={"Success"}/>}
+                {showWindow && <ModalWindow text={textModal}/>}
         </div>
     )
 };

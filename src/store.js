@@ -13,7 +13,7 @@ import loginReducer from './slices/loginSlice';
 import portfolioSlice from './slices/portfolioSlice'
 import walletReducer from './slices/walletSlice';
 import tradeReducer from './slices/tradeSlice';
-import profileReducer from './slices/profileSlice'
+import profileReducer from './slices/profileSlice';
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -42,6 +42,6 @@ const store = configureStore({
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export const persister = persistStore(store)
+export const persister = persistStore(store);
 
 export default store;

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseUrl } from '../config/js';
 
 const initialState = {
     userData: {},
@@ -10,6 +11,7 @@ const initialState = {
     referenceCurrency: '',
     newData: {},
     showTradeWindow: false,
+    history: 'cryptocurrency',
 }
 
 export const tradeSlice = createSlice({
@@ -40,7 +42,9 @@ export const tradeSlice = createSlice({
     SetShowTradeWindow: (state, action) => {
         state.showTradeWindow = action.payload;
     },
-
+    SetHistory: (state, action) => {
+        state.history = action.payload;
+    },
   },
 })
 
@@ -52,7 +56,8 @@ export const {
     SetTypeTrade,
     SetChangeCurrency,
     SetReferenceCurrency, 
-    SetShowTradeWindow } = tradeSlice.actions;
+    SetShowTradeWindow,
+    SetHistory } = tradeSlice.actions;
 
 // Selectors
 export const selectUserData = (state) => state.trade.userData;
@@ -63,13 +68,14 @@ export const selectChangeCurrency = (state) => state.trade.changeCurrency;
 export const selectReferenceCurrency = (state) => state.trade.referenceCurrency;
 export const selectNewData = (state) => state.trade.newData;
 export const selectShowTradeWindow = (state) => state.trade.showTradeWindow;
+export const selectHistory = (state) => state.trade.history;
 
 
 // Thunk actions 
 export const getUserData = (login) => {
     return async (dispatch) => {
         try{
-            const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
+            const res = await axios.get(baseUrl + `/profile?login=${login}`);
             dispatch(SetUserData((res.data[0])));
         }catch{
             console.log("get err");
@@ -78,8 +84,8 @@ export const getUserData = (login) => {
 }
 
 export const postUserData = (login, data) => {
-    return async (dispatch) => {
-        await fetch(`http://localhost:3001/profile/${login}`,{
+    return async () => {
+        await fetch(baseUrl + `/profile/${login}`,{
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

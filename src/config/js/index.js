@@ -1,3 +1,16 @@
+export const baseUrl = 'http://localhost:3001';
+
+export const colors = {
+   green: '#1D8348',
+   lightGreen: '#28B463',
+   dark: '#292929',
+   red: '#CB4335',
+   grey: '#929A9F',
+   light: '#F4F6F7',
+   white: '#FFFFFF',
+   orange: '#ff8844'
+}
+
 export const BASECURRENCY = {
     cryptocurrency: [
        {

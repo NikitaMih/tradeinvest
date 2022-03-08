@@ -3,26 +3,26 @@
 .profile{
     position: fixed;
     left: 10%;
-    width: 90%;
-    height: 100%;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $light;
+    text-align: center;
+    width: 90%;
+    height: 100%;
     padding: 3% 0;
+    background-color: $light;
 }
 
 .profile-form{
     width: 40%;
-    background-color: $dark;
     padding: 2em 3em;    
-    border-radius: 2em;
     margin: 2% 0;
+    border-radius: 2em;
+    background-color: $dark;
 
     &__login{
-        width: 50%;
         text-align: start;
+        width: 50%;
         font-size: 2.5em;
         color: $grey;
     }
@@ -35,9 +35,9 @@
     }
 
     &__title{
-        color: $light;
         text-align: center;
         font-size: 3rem;
+        color: $light;
     }
 
     &__subtitle{
@@ -49,13 +49,13 @@
         align-self: center;
         width: 45%;
         height: 2.5em;
-        border-radius: 1em;
-        border: 1px solid $dark;
         padding: 0.5rem;
         margin: 0.3em 0;
+        font-size: 1.2rem;
+        border-radius: 1em;
+        border: 1px solid $dark;
         color: $light;
         background-color: $dark;
-        font-size: 1.2rem;
     }
 
     &__err{
@@ -76,14 +76,13 @@
 
     &__btn{
         width: 50%;
-        border-radius: 1em;
         height: 3em; 
         padding: 0.5rem;
         margin: 0.5em 0 1.5em 0;
-        border: none;
         font-size: 1.2rem;
         font-weight: bold;
+        border: none;
+        border-radius: 1em;
         cursor: pointer;        
     }
-
 }

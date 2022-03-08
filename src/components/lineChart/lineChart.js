@@ -41,25 +41,25 @@ export function LineChart({name, rate}) {
       };
 
     useEffect(() => {
-        createDataChart()
+        createDataChart();
     },[]);
 
     useEffect(() => {
-        changeDataChart()
+        changeDataChart();
     },[rate]);
 
     const createDataChart = () => {
         for(let i = 0; i <= 19; i++) {
             let newRate = (rate * (Math.random() * (1.03 - 0.97) + 0.97)).toFixed(3);
-            SetValue(value.push(newRate))
+            SetValue(value.push(newRate));
         }
         value.push(rate);
     };
 
     const changeDataChart = () => {
-        let newData = value.slice(1)
-        newData.push(rate)
-        SetValue(newData)
+        let newData = value.slice(1);
+        newData.push(rate);
+        SetValue(newData);
     };
 
     const data = {

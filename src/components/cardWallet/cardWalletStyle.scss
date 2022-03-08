@@ -1,20 +1,19 @@
 @import "../../config/style/style.scss";
 
 .card-wallet{
-    background-color: $dark;
-    width: 50%;
-    color: white;
-    border-radius: 0.7rem;
     text-align: center;
+    width: 50%;
+    min-width: 600px;
     margin-top: 2rem;
     padding: 2% 0;
-    min-width: 600px;
+    border-radius: 0.7rem;
+    background-color: $dark;
+    color: white;
 }
 
 .btn-change{
     display: flex;
     justify-content: space-around;
-
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -22,33 +21,32 @@
     }
     
     input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
     }
 
     &__input{
         padding: 0.5em 4em;
-        border-radius: 4px;
         margin: 1em;
+        border-radius: 4px;
     }
 
     &__cash-out{
-        color: $light;
-        background-color: $red;
+        margin: 1em;
         padding: 0.5em 4em;
         border-radius: 4px;
-        margin: 1em;
         border: none;
+        background-color: $red;
+        color: $light;
         cursor: pointer;
     }
     
     &__cash-in{
-        color: $light;
-        background-color: $green;
+        margin: 1em;
         padding: 0.5em 4em;
         border-radius: 4px;
-        margin: 1em;
         border: none;
+        color: $light;
+        background-color: $green;
         cursor: pointer;
     }
-    
 }

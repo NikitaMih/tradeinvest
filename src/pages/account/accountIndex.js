@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import './accountStyle.scss';
 import {
     BrowserRouter as Router,
     Switch,
     Link,
   } from "react-router-dom";
+import { colors } from '../../config/js';
 
 import Portfolio from '../../components/portfolio/portfolioIndex';
 import Trade from '../../components/trade/tradeIndex';
@@ -23,7 +23,7 @@ const AccountPage = () => {
     };
 
     const onChangeActiveBlok = (blok) => {
-        SetActiveBlok(blok)
+        SetActiveBlok(blok);
     };
 
     return(
@@ -38,23 +38,23 @@ const AccountPage = () => {
                         <nav className='nav__list'>
                             <Link 
                                 to="/account/portfolio"
-                                style={{color: activeBlok === 'Portfolio' && '#929A9F'}}
+                                style={{color: activeBlok === 'Portfolio' && colors.grey}}
                                 onClick={() => onChangeActiveBlok('Portfolio')}>Portfolio</Link>
                             <Link 
                                 to="/account/trade/cryptocurrency"
-                                style={{color: activeBlok === 'Trade' && '#929A9F'}}
+                                style={{color: activeBlok === 'Trade' && colors.grey}}
                                 onClick={() => onChangeActiveBlok('Trade')}>Trade</Link>
                             <Link 
                                 to="/account/wallet"
-                                style={{color: activeBlok === 'Wallet' && '#929A9F'}}
+                                style={{color: activeBlok === 'Wallet' && colors.grey}}
                                 onClick={() => onChangeActiveBlok('Wallet')}>Wallet</Link>
                             <Link 
                                 to="/account/profile"
-                                style={{color: activeBlok === 'Profile' && '#929A9F'}}
+                                style={{color: activeBlok === 'Profile' && colors.grey}}
                                 onClick={() => onChangeActiveBlok('Profile')}>Profile</Link>
                             <Link 
                                 to="/account/help"
-                                style={{color: activeBlok === 'Help' && '#929A9F'}}
+                                style={{color: activeBlok === 'Help' && colors.grey}}
                                 onClick={() => onChangeActiveBlok('Help')}>Help</Link>
                         </nav>
                     </div>
