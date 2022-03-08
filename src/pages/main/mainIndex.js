@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './mainStyle.scss'
+import './mainStyle.scss';
 import {
     BrowserRouter as Router,
     Link

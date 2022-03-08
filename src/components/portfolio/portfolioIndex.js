@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './portfolioStyle.scss';
 import PieChart from '../pieChart/pieChart';
 import { selectLogin } from '../../slices/loginSlice';

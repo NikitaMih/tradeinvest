@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './profileStyle.scss';
+import { selectLogin } from '../../slices/loginSlice';
 import { 
     selectUserData,
     selectEmail,
@@ -13,6 +13,7 @@ import {
     GetProfileData,
     PostProfileData } from '../../slices/profileSlice';
 import ChangePassword from '../changePassword/changePasswordIndex';
+import { colors } from '../../config/js';
 
 const Profile = () => {
 
@@ -20,35 +21,35 @@ const Profile = () => {
 
     const showChangePasswordWindow = useSelector(selectShowChangePasswordWindow);
 
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
 
     const userData = useSelector(selectUserData);
     const email = useSelector(selectEmail);
     const phone = useSelector(selectPhone);
 
     const [typeBtn, SetTypeBtn] = useState('EDIT');
-    const [colorBtn, SetColorBtn] = useState('#ff8844');
+    const [colorBtn, SetColorBtn] = useState(colors.orange);
     const [inputDisabled, SetInputDisabled] = useState(true);
 
-    const [errEmail, SetErrEmail] = useState('#292929');
-    const [errPhone, SetErrPhone] = useState('#292929');
+    const [errEmail, SetErrEmail] = useState(colors.dark);
+    const [errPhone, SetErrPhone] = useState(colors.dark);
 
     useEffect(() => dispatch(GetProfileData(login)), []);
 
     const onChangeData = () => {
         SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'SAVE');
-        SetColorBtn(typeBtn === 'EDIT' ? '#1D8348' : '#1D8348');
+        SetColorBtn(typeBtn === 'EDIT' ? colors.green : colors.green);
         SetInputDisabled(typeBtn === 'SAVE' && false);
         const reEmail = /^[\w]{1}[\w\.]*@[\w]+\.[a-z]{2,4}$/i;
         const rePhone = /(\+375)[\s(]*\d{2}[)\s]*\d{3}[\s-]?\d{2}[\s-]?\d{2}/i;
 
         const newEmail = document.getElementById('email').value;
         const newPhone = document.getElementById('phone').value;
-        reEmail.test(newEmail) ? SetErrEmail('#292929') : SetErrEmail('#CB4335');
-        rePhone.test(newPhone) ? SetErrPhone('#292929') : SetErrPhone('#CB4335');
+        reEmail.test(newEmail) ? SetErrEmail(colors.dark) : SetErrEmail(colors.red);
+        rePhone.test(newPhone) ? SetErrPhone(colors.dark) : SetErrPhone(colors.red);
         if(reEmail.test(newEmail) && rePhone.test(newPhone)){
             SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'EDIT');
-            SetColorBtn(typeBtn === 'EDIT' ? '#1D8348' : '#ff8844');
+            SetColorBtn(typeBtn === 'EDIT' ? colors.green : colors.orange);
             SetInputDisabled(!inputDisabled);
             if (typeBtn === 'SAVE'){
                 const newData = {...userData, email: newEmail, phone: newPhone};
@@ -77,7 +78,7 @@ const Profile = () => {
                     <input 
                         id='email' 
                         className='profile-form__input'
-                        style={{borderColor: !inputDisabled && '#F4F6F7'}}
+                        style={{borderColor: !inputDisabled && colors.light}}
                         disabled={inputDisabled} 
                         value={email}
                         onChange={(event) => dispatch(SetEmail(event.target.value))}
@@ -86,11 +87,11 @@ const Profile = () => {
                 <div className='profile-form__err' style={{color:errPhone}}>Phone incorrect</div>
                 <div className='profile-form__blok'>
                     <div className='profile-form__subtitle'>Phone:</div>
-                    <input 
+                    <input
                         id='phone' 
                         className='profile-form__input'
-                        style={{borderColor: !inputDisabled && '#F4F6F7'}}
-                        disabled={inputDisabled} 
+                        style={{borderColor: !inputDisabled && colors.light}}
+                        disabled={inputDisabled}
                         value={phone}
                         onChange={(event) => dispatch(SetPhone(event.target.value))}
                         ></input>

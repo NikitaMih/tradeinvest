@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseUrl } from '../config/js';
 
 const initialState = {
   login: "",
@@ -45,7 +46,7 @@ export const selectShowLogin = (state) => state.login.showLogin;
 export const authorization = (login, password) => {
   return async (dispatch) => {
     try{
-      const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
+      const res = await axios.get(baseUrl + `/profile?login=${login}`);
       password === res.data[0].password ? dispatch(SetHistory()) : dispatch(SetError(true));
     } catch {
       dispatch(SetError(true));

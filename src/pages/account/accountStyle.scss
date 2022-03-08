@@ -12,24 +12,24 @@
 .header-account{
     display: flex;
     justify-content: space-between;
-    color: $grey;
     padding: 1em 3.5em;
+    color: $grey;
     background-color: $dark;
 }
 
 .logo{
     display: flex;
     justify-content: center;
-    color: $light;
     font-weight: bolder;
     font-size: 37px;
     text-decoration: none;
+    color: $light;
 }
 
 .exit{
-    font-size: 0.5em;
     width: 4em;
     height: 4em;
+    font-size: 0.5em;
     color: aqua;
     cursor: pointer;
 }
@@ -40,10 +40,10 @@
 
 .nav{
     position: fixed;
-    background-color: $dark;
     width: 10%;
-    color: $light;
     height: 100%;
+    background-color: $dark;
+    color: $light;
 
     &__list{
         display: flex;
@@ -52,14 +52,14 @@
         padding: 0 2%;
 
         a{
-            margin: 2rem 0;
             text-align: center;
-            color: $light;
+            width: 80%;
+            padding: 15% 0;
+            margin: 2rem 0;
             border: 3px solid;
             border-radius: 1em;
             text-decoration: none;
-            width: 80%;
-            padding: 15% 0;
+            color: $light;
         }
 
         a:hover{

@@ -1,23 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './changePasswordStyle.scss';
+import { selectLogin } from '../../slices/loginSlice';
 import { 
     selectUserData,
     SetShowChangePasswordWindow,
     PostProfileData } from '../../slices/profileSlice';
 import ModalWindow from '../modalWindow/modalWindowIndex';
+import { colors } from '../../config/js';
 
 const ChangePassword = () => {
 
     const dispatch = useDispatch();
 
     const userData = useSelector(selectUserData);
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
     const [password, SetPassword] = useState('');
     const [confirmPassword, SetConfirmPassword] = useState('');
-    const [errPassword, SetErrPassword] = useState('#292929');
-    const [errConfirmPassword, SetErrConfirmPassword] = useState('#292929');
+    const [errPassword, SetErrPassword] = useState(colors.dark);
+    const [errConfirmPassword, SetErrConfirmPassword] = useState(colors.dark);
     const [showWindow, SetShowWindow] = useState(false);
     const [textModal, SetTextModal] = useState('');
 
@@ -31,8 +32,8 @@ const ChangePassword = () => {
 
     const onSavePassword = () => {
         const rePassword = /^[a-zA-Z0-9]{6,}$/i; 
-        rePassword.test(password) ? SetErrPassword('#292929') : SetErrPassword('#CB4335');
-        password === confirmPassword ? SetErrConfirmPassword('#292929') : SetErrConfirmPassword('#CB4335');
+        rePassword.test(password) ? SetErrPassword('#292929') : SetErrPassword(colors.red);
+        password === confirmPassword ? SetErrConfirmPassword('#292929') : SetErrConfirmPassword(colors.red);
         if (rePassword.test(password) && password === confirmPassword){
             putNewPassword();
         }
@@ -50,7 +51,7 @@ const ChangePassword = () => {
         SetTextModal('PASSWORD CHANGED');
         SetShowWindow(true);
         setTimeout(() => {
-            dispatch(SetShowChangePasswordWindow(false))
+            dispatch(SetShowChangePasswordWindow(false));
             SetShowWindow(false);
         }, 1000);
     };

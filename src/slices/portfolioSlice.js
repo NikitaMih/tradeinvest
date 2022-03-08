@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseUrl } from '../config/js';
 
 const initialState = {
   userData: {},
@@ -25,7 +26,7 @@ export const selectUserData = (state) => state.portfolio.userData;
 export const getUserData = (login) => {
   return async (dispatch) => {
     try{
-      const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
+      const res = await axios.get(baseUrl + `/profile?login=${login}`);
       dispatch(SetUserData(res.data[0]));
     } catch {
       console.log('err');;

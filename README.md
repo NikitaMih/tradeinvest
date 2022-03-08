@@ -71,9 +71,11 @@ Trade and Invest is a virtual platform, where you can purchase various types of 
 
 - ### Json-server
 
-<p align="center"><img src="screenshots/jsonserver.png" width="500"/></p>
-
 На порту http://localhost:3001 разворачивается json-server, имеющий 2 эндпоита profile и help, на данный сервер попадает вся информация из площадки Trade&Invest.
+
+http://localhost:3001/profile - содержит информацию о зарегистрированных пользователях.
+http://localhost:3001/help - содержит информацию о сообщениях помощи отправленных с аккаунтов.
+
 
 ## Getting Started
 
@@ -87,13 +89,18 @@ Trade and Invest is a virtual platform, where you can purchase various types of 
     ```
    npm i
     ```
-3. Выполнить команду (после выполнения команды на потру http://localhost:3000 развернется проект):
+    ```
+3. Установить json-server, если ранее не был установлен;
+    ```
+   npm install -g json-server
+    ```
+4. Выполнить команду (после выполнения команды на потру http://localhost:3000 развернется проект);
     ```
    npm start
     ```  
 или скрипт (react-scripts start)
 
-4. Для запуска секвера выполнить скрипт:
+5. Для запуска секвера выполнить скрипт в другом терминале;
     ```
    json-server --watch db.json --port 3001
     ``` 

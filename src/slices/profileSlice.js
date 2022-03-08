@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseUrl } from '../config/js';
 
 const initialState = {
   userData: {},
@@ -40,7 +41,7 @@ export const selectShowChangePasswordWindow = (state) => state.profile.showChang
 export const GetProfileData = (login) => {
     return async (dispatch) => {
         try{
-            const res = await axios.get(`http://localhost:3001/profile?login=${login}`);
+            const res = await axios.get(baseUrl + `/profile?login=${login}`);
             dispatch(SetUserData(res.data[0]))
             dispatch(SetEmail(res.data[0].email));
             dispatch(SetPhone(res.data[0].phone));
@@ -50,13 +51,14 @@ export const GetProfileData = (login) => {
     }
 };
 
-export const PostProfileData = async (login, data) => {
-    try{
-        await axios.put(`http://localhost:3001/profile/${login}`,data);
-    } catch {
-        console.log("err");
-    }
-    
+export const PostProfileData = (login, data) => {
+    return async () => {
+        try{
+          await axios.put(baseUrl + `/profile/${login}`, data);
+        } catch {
+          console.log('err');
+        }
+      }
 };
 
 export default profileSlice.reducer;

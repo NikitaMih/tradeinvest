@@ -79,6 +79,24 @@
       "email": "niktest@gmail.com",
       "phone": "+375293993198",
       "wallet": {
+        "EUR": 100,
+        "RUB": 0,
+        "USD": 663.517,
+        "BTC": 0,
+        "ETH": 0,
+        "Litecoin": 0,
+        "Apple": 2,
+        "Facebook": 0,
+        "Amazon": 0
+      }
+    },
+    {
+      "id": "123",
+      "login": "123",
+      "password": "12345Qw",
+      "email": "nik96mih@mail.ru",
+      "phone": "+375(29)399-11-11",
+      "wallet": {
         "EUR": 0,
         "RUB": 0,
         "USD": 0,
@@ -88,6 +106,47 @@
         "Apple": 0,
         "Facebook": 0,
         "Amazon": 0
+      }
+    },
+    {
+      "login": "Nikita",
+      "password": "Nikita123",
+      "id": "oofI-Xq"
+    },
+    {
+      "id": "Katee",
+      "login": "Katee",
+      "password": "K111111k",
+      "email": "Kate@mail.ru",
+      "phone": "+375298976234wert",
+      "wallet": {
+        "EUR": 1000000000,
+        "RUB": 100000,
+        "USD": 98842906525725.92,
+        "BTC": 10000,
+        "ETH": 0,
+        "Litecoin": 0,
+        "Apple": 1000000010,
+        "Facebook": 9998,
+        "Amazon": 98
+      }
+    },
+    {
+      "id": "MihTest",
+      "login": "MihTest",
+      "password": "Nik96mih",
+      "email": "mihtest@mail.ru",
+      "phone": "+375292222222",
+      "wallet": {
+        "EUR": 1001,
+        "RUB": 10000000,
+        "USD": 813966.309,
+        "BTC": 1,
+        "ETH": 0,
+        "Litecoin": 0,
+        "Apple": 1,
+        "Facebook": 3,
+        "Amazon": 5
       }
     }
   ],
@@ -109,6 +168,42 @@
       "login": "Kate",
       "title": "",
       "text": ""
+    },
+    {
+      "id": "1",
+      "login": "NikitaTest",
+      "title": "1",
+      "text": "1"
+    },
+    {
+      "id": "2",
+      "login": "NikitaTest",
+      "title": "2",
+      "text": "2"
+    },
+    {
+      "id": "4",
+      "login": "NikitaTest",
+      "title": "4",
+      "text": "4"
+    },
+    {
+      "id": "6",
+      "login": "NikitaTest",
+      "title": "6",
+      "text": "6"
+    },
+    {
+      "id": "34",
+      "login": "NikitaTest",
+      "title": "34",
+      "text": "34"
+    },
+    {
+      "id": "MihTest",
+      "login": "MihTest",
+      "title": "MihTest",
+      "text": "123"
     }
   ]
 }

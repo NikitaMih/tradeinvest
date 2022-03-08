@@ -4,11 +4,11 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    border-radius: 16px;
-    padding: 4%;
     width: 60%;
-    background-color: $dark;
     min-width: 300px;
+    padding: 4%;
+    border-radius: 16px;
+    background-color: $dark;   
 
     &-blok{
         display: flex;
@@ -32,25 +32,25 @@
             align-self: center;
             width: 100%;
             height: 1.5em;
-            border-radius: 0.5em;
-            border: 1px solid $light;
             padding: 0.2rem;
             margin: 0.3em 0;
+            font-size: 1rem;
+            border-radius: 0.5em;
+            border: 1px solid $light;
             color: $light;
             background-color: $dark;
-            font-size: 1rem;
         }
 
         button{
-            background-color: $green;
             width: 100%;
-            border-radius: 1em;
-            height: 3em; 
+            height: 3em;
             padding: 0.5rem;
             margin: 0.5em 0 1.5em 0;
-            border: none;
             font-size: 1rem;
             font-weight: bold;
+            border-radius: 1em;
+            border: none;
+            background-color: $green;
             cursor: pointer;
         }
     }

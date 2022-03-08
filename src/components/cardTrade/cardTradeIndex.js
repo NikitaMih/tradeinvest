@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './cardTradeStyle.scss';
 import TradeWindow from '../tradeWindow/tradeWindowIndex';
 import {
@@ -10,11 +9,11 @@ import {
     SetChangeCurrency,
     SetReferenceCurrency, 
     SetShowTradeWindow,
-    selectUserData,
     selectShowTradeWindow, 
     } from '../../slices/tradeSlice';
+import { colors } from '../../config/js';
 
-const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
+const CardTarde = ( {name, changeCurrency, referenceCurrency, baseRate} ) => {
 
     const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
     const [previousRate, SetPreviousRate] = useState(rate);
     const [percChange, SetPercChange] = useState(0.00);
     const [flagChange, SetFlagChange] = useState('+');
-    const [colorChange, SetColorChange] = useState('#1D8348');
+    const [colorChange, SetColorChange] = useState(colors.green);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -35,17 +34,17 @@ const CardTarde = ({name, changeCurrency, referenceCurrency, baseRate}) => {
       }, []);
 
     useEffect(() => {
-        let newRercChange = 0;
+        let newPercChange = 0;
         if (previousRate < rate){
             SetFlagChange('+');
-            SetColorChange('#1D8348');
-            newRercChange = (previousRate - rate)/previousRate * 100;
+            SetColorChange(colors.green);
+            newPercChange = (previousRate - rate)/previousRate * 100;
         } else {
             SetFlagChange('-');
-            SetColorChange('#CB4335');
-            newRercChange = (rate - previousRate)/previousRate * 100;
+            SetColorChange(colors.red);
+            newPercChange = (rate - previousRate)/previousRate * 100;
         }   
-        SetPercChange(Math.abs(newRercChange));
+        SetPercChange(Math.abs(newPercChange));
         SetPreviousRate(rate);
     }, [rate])
     

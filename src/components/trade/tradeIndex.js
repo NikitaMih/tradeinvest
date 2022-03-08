@@ -1,24 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './tradeStyle.scss';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";
 import { getUserData } from '../../slices/tradeSlice';
 import { useHistory } from "react-router-dom";
 import CardTarde from "../cardTrade/cardTradeIndex";
 import { BASECURRENCY } from '../../config/js/index';
+import { selectLogin } from '../../slices/loginSlice';
+import { SetHistory, selectHistory } from '../../slices/tradeSlice';
 
 const Trade = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
+    const historyPage = useSelector(selectHistory);
 
     useEffect(() => {
         onUserData(login);
@@ -28,11 +29,9 @@ const Trade = () => {
         dispatch(getUserData(login)); 
     };
 
-    const [block, SetBlock] = useState('cryptocurrency');
-
     const onChangeCurrencyPage = (page) => {
         history.push(page);
-        SetBlock(page);
+        dispatch(SetHistory(page));
     };
 
     return(
@@ -41,15 +40,15 @@ const Trade = () => {
             <div>
                 <div className='trade__switch-list'>
                     <button
-                        style={{color: block === 'securities' && '#292929'}}
+                        style={{color: historyPage === 'securities' && '#292929'}}
                         className='trade__switch' 
                         onClick={() => onChangeCurrencyPage('securities')}>Securities</button>
                     <button
-                        style={{color: block === 'cryptocurrency' && '#292929'}}
+                        style={{color: historyPage === 'cryptocurrency' && '#292929'}}
                         className='trade__switch' 
                         onClick={() => onChangeCurrencyPage('cryptocurrency')}>Cryptocurrency</button>
                     <button 
-                        style={{color: block === 'currency' && '#292929'}}
+                        style={{color: historyPage === 'currency' && '#292929'}}
                         className='trade__switch' 
                         onClick={() => onChangeCurrencyPage('currency')}>Currency</button>
                 </div>

@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
 import './walletStyle.scss';
 import CardWallet from "../cardWallet/cardWalletIndex";
+import { selectLogin } from '../../slices/loginSlice';
 import { 
-    selectUserData,
     selectUSD,
     selectEUR,
     selectRUB,
@@ -14,7 +13,7 @@ const Wallet = () => {
 
     const dispatch = useDispatch();
 
-    const login = useSelector((state) => state.login.login);
+    const login = useSelector(selectLogin);
     const USD = useSelector(selectUSD);
     const EUR = useSelector(selectEUR);
     const RUB = useSelector(selectRUB);
@@ -35,7 +34,7 @@ const Wallet = () => {
         }]);
 
     useEffect(() => {
-        dispatch(getUserData(login))
+        dispatch(getUserData(login));
     }, []);
 
     useEffect(() => {
@@ -44,7 +43,7 @@ const Wallet = () => {
             {name: "USD", value: USD},
             {name: "RUB", value: RUB},
         ])
-    }, [EUR, USD, RUB])
+    }, [EUR, USD, RUB]);
 
     return(
         <div className='wallet'>
