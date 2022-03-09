@@ -136,8 +136,8 @@ const RegistrationPage = () => {
                                 <div>Password</div>
                                 <div style={{color:errPassword}}>Password does not meet security requirements</div>
                             </div>
-                            <div className='registration-form__input'>
-                                <label title='Password must include a minimum of 6 characters, both upper and lower case, and at least one number.'>
+                            <div className='registration-form__input password'>
+                                <label className='input-password-registration' title='Password must include a minimum of 6 characters, both upper and lower case, and at least one number.'>
                                     <input id='input-password-registration' type='password' className='input-password-registration' onChange={onChangePassword}></input>
                                 </label>
                                 <label className='check'>
@@ -153,12 +153,12 @@ const RegistrationPage = () => {
                                 </label>
                             </div>
                         </div>
-                        <div>
-                            <div className='registration-form__subtitle password'>
+                        <div className='registration-form__password'>
+                            <div className='registration-form__subtitle'>
                                 <div>Confirm the password</div>
                                 <div style={{color:errConfirmPassword}}>Password does not match</div>
                             </div>
-                            <div className='registration-form__input' >
+                            <div className='registration-form__input password' >
                                 <input type='password' className='input-password-registration' onChange={onChangeConfirmPassword}></input>
                                 <label className='check'>
                                     <input 
