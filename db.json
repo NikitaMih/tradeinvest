@@ -5,17 +5,35 @@
       "login": "NikitaTest",
       "password": "Test123",
       "email": "niktest@gmail.com",
-      "phone": "+375293993198",
+      "phone": "+375293993134",
       "wallet": {
-        "EUR": 100,
+        "EUR": 1100.0001,
         "RUB": 0,
-        "USD": 663.517,
-        "BTC": 0,
+        "USD": 50888.472,
+        "BTC": 1.1,
+        "ETH": 1.5,
+        "Litecoin": 1,
+        "Apple": 1,
+        "Facebook": 1,
+        "Amazon": 0
+      }
+    },
+    {
+      "id": "Kate",
+      "login": "Kate",
+      "password": "K123456k",
+      "email": "Kate@gma.yu",
+      "phone": "+375298976534wtjsaegw",
+      "wallet": {
+        "EUR": 90100,
+        "RUB": 29000,
+        "USD": 9970225051.56,
+        "BTC": 10,
         "ETH": 0,
         "Litecoin": 0,
-        "Apple": 2,
+        "Apple": 10000,
         "Facebook": 0,
-        "Amazon": 0
+        "Amazon": 10010
       }
     }
   ],

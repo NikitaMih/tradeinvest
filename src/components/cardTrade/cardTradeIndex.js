@@ -22,8 +22,8 @@ const CardTarde = ( {name, changeCurrency, referenceCurrency, baseRate} ) => {
     const [rate, SetRate] = useState(baseRate);
     const [previousRate, SetPreviousRate] = useState(rate);
     const [percChange, SetPercChange] = useState(0.00);
-    const [flagChange, SetFlagChange] = useState('+');
-    const [colorChange, SetColorChange] = useState(colors.green);
+    const [flagChange, SetFlagChange] = useState('');
+    const [colorChange, SetColorChange] = useState(colors.grey);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -39,11 +39,15 @@ const CardTarde = ( {name, changeCurrency, referenceCurrency, baseRate} ) => {
             SetFlagChange('+');
             SetColorChange(colors.green);
             newPercChange = (previousRate - rate)/previousRate * 100;
-        } else {
+        } else if (previousRate > rate) {
             SetFlagChange('-');
             SetColorChange(colors.red);
             newPercChange = (rate - previousRate)/previousRate * 100;
-        }   
+        } else {
+            SetFlagChange('');
+            SetColorChange(colors.grey);
+            newPercChange = 0;
+        }
         SetPercChange(Math.abs(newPercChange));
         SetPreviousRate(rate);
     }, [rate])
