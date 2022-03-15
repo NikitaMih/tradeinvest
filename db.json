@@ -17,24 +17,6 @@
         "Facebook": 1,
         "Amazon": 0
       }
-    },
-    {
-      "id": "Kate",
-      "login": "Kate",
-      "password": "K123456k",
-      "email": "Kate@gma.yu",
-      "phone": "+375298976534wtjsaegw",
-      "wallet": {
-        "EUR": 90100,
-        "RUB": 29000,
-        "USD": 9970225051.56,
-        "BTC": 10,
-        "ETH": 0,
-        "Litecoin": 0,
-        "Apple": 10000,
-        "Facebook": 0,
-        "Amazon": 10010
-      }
     }
   ],
   "help": [
