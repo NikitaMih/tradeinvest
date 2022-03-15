@@ -74,7 +74,7 @@
         color: #cf6f38;
     }
 
-    &__btn{
+    &__btn-edit{
         width: 50%;
         height: 3em; 
         padding: 0.5rem;
@@ -83,6 +83,33 @@
         font-weight: bold;
         border: none;
         border-radius: 1em;
-        cursor: pointer;        
+        background-color:#ff8844;
+        cursor: pointer; 
+    }
+
+    &__btn-save{
+        width: 25%;
+        height: 3em; 
+        padding: 0.5rem;
+        margin: 0.5em 0 1.5em 3.5em;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 1em;
+        background-color: $green;
+        cursor: pointer;
+    }
+
+    &__btn-cancel{
+        width: 21%;
+        height: 3em; 
+        padding: 0.5rem;
+        margin: 0.5em 0 1.5em 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 1em;
+        background-color: $red;
+        cursor: pointer;
     }
 }

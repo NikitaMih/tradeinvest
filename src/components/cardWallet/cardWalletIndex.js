@@ -19,10 +19,11 @@ const CardWallet = ({name, value}) => {
 
     const onChangeCash = (change) => {
         let changeValue = null; 
+        let input = document.getElementById('value');
         if (change === 1){
-            changeValue = event.target.previousSibling.value;
+            changeValue = input.value;
         }else{
-            changeValue = event.target.nextElementSibling.value * (-1);
+            changeValue = input.value * (-1);
         }
         let currencyName = event.target.parentElement.parentElement.id;
         let newWalletValue = wallet[currencyName] + +changeValue;
@@ -57,7 +58,7 @@ const CardWallet = ({name, value}) => {
                 {(!cash) && <button className='btn-change__cash-in'onClick={() => onVisibleInput(1)}>CASH IN</button>}
 
                 {cash === -1 && <button className='btn-change__cash-out' onClick={() => onChangeCash(-1)}>CASH OUT</button>}
-                {cash && <input type="number" className='btn-change__input'></input>}
+                {cash && <label><input id='value' type="number" className='btn-change__input'></input><span className='btn-change__cancel' onClick={() => onVisibleInput(false)}>x</span></label>}
                 {cash === 1 && <button className='btn-change__cash-in'onClick={() => onChangeCash(1)}>CASH IN</button>}
             </div>
             {showWindow && <ModalWindow text={textModal}/>}

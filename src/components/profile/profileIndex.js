@@ -28,7 +28,6 @@ const Profile = () => {
     const phone = useSelector(selectPhone);
 
     const [typeBtn, SetTypeBtn] = useState('EDIT');
-    const [colorBtn, SetColorBtn] = useState(colors.orange);
     const [inputDisabled, SetInputDisabled] = useState(true);
 
     const [errEmail, SetErrEmail] = useState(colors.dark);
@@ -38,7 +37,6 @@ const Profile = () => {
 
     const onChangeData = () => {
         SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'SAVE');
-        SetColorBtn(typeBtn === 'EDIT' ? colors.green : colors.green);
         SetInputDisabled(typeBtn === 'SAVE' && false);
         const reEmail = /^[\w]{1}[\w\.]*@[\w]+\.[a-z]{2,4}$/i;
         const rePhone = /(\+375)[\s(]*\d{2}[)\s]*\d{3}[\s-]?\d{2}[\s-]?\d{2}/i;
@@ -49,7 +47,6 @@ const Profile = () => {
         rePhone.test(newPhone) ? SetErrPhone(colors.dark) : SetErrPhone(colors.red);
         if(reEmail.test(newEmail) && rePhone.test(newPhone)){
             SetTypeBtn(typeBtn === 'EDIT' ? 'SAVE' : 'EDIT');
-            SetColorBtn(typeBtn === 'EDIT' ? colors.green : colors.orange);
             SetInputDisabled(!inputDisabled);
             if (typeBtn === 'SAVE'){
                 const newData = {...userData, email: newEmail, phone: newPhone};
@@ -61,6 +58,12 @@ const Profile = () => {
 
     const onShowChangePasswordWindow = () => {
         dispatch(SetShowChangePasswordWindow(true));
+    }
+
+    const onCancelProfile = () => {
+        dispatch(GetProfileData(login));
+        SetTypeBtn('EDIT');
+        SetInputDisabled(true);
     }
 
     return(
@@ -98,7 +101,9 @@ const Profile = () => {
                 </div>
                 <div className='profile-form__blok'>
                     <div className='profile-form__change-password' onClick={onShowChangePasswordWindow}>Change password</div>
-                    <button style={{backgroundColor: colorBtn}} className='profile-form__btn' onClick={onChangeData}>{typeBtn}</button>
+                    {typeBtn === 'EDIT' && <button className='profile-form__btn-edit' onClick={onChangeData}>EDIT</button>}
+                    {typeBtn === 'SAVE' && <button className='profile-form__btn-save' onClick={onChangeData} >SAVE</button>}
+                    {typeBtn === 'SAVE' && <button className='profile-form__btn-cancel' onClick={onCancelProfile} >CANCEL</button>}
                 </div>
                 {showChangePasswordWindow && <ChangePassword/>}
             </div>

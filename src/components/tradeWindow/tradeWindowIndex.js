@@ -32,6 +32,7 @@ const TradeWindow = () => {
     const [sumYouNeed, SetSumYouNeed] = useState(0);
     const [cost, SetCost] = useState(0);
     const [colorBtn, SetColorBtn] = useState('');
+    const [colorInput, SetColorInput] = useState(colors.light)
     const [showWindow, SetShowWindow] = useState(false);
     const [textModal, SetTextModal] = useState('');
 
@@ -43,29 +44,33 @@ const TradeWindow = () => {
         const balanceChange  = userData.wallet[changeCurrency];
         let newBalanceChange = 0;
         let newBalanceReference = 0;
-        if(type === 'BUY'){
-            newBalanceChange = +balanceChange - +count;
-            if(newBalanceChange >= 0){
-                newBalanceReference = +balanceReference + +cost;
-                postNewUserData(newBalanceChange, newBalanceReference, changeCurrency, referenceCurrency);
-            }else{
-                showModalWindow(`Insufficient funds ${changeCurrency}`);
+        if (cost >= 0){
+            if(type === 'BUY'){
+                newBalanceChange = +balanceChange - +count;
+                if(newBalanceChange >= 0){
+                    newBalanceReference = +balanceReference + +cost;
+                    postNewUserData(newBalanceChange, newBalanceReference, changeCurrency, referenceCurrency);
+                }else{
+                    showModalWindow(`Insufficient funds ${changeCurrency}`);
+                }
             }
-        }
-        if(type === 'SELL'){
-            newBalanceReference = +balanceReference - +cost;
-            if(newBalanceReference >= 0){
-                newBalanceChange = +balanceChange + +count;
-                postNewUserData(newBalanceChange, newBalanceReference, changeCurrency, referenceCurrency);
-            }else{
-                showModalWindow(`Insufficient funds ${referenceCurrency}`);
+            if(type === 'SELL'){
+                newBalanceReference = +balanceReference - +cost;
+                if(newBalanceReference >= 0){
+                    newBalanceChange = +balanceChange + +count;
+                    postNewUserData(newBalanceChange, newBalanceReference, changeCurrency, referenceCurrency);
+                }else{
+                    showModalWindow(`Insufficient funds ${referenceCurrency}`);
+                }
             }
+        } else {
+            SetColorInput(colors.red);
         }
     };
 
     const postNewUserData = (newBalanceChange, newBalanceReference, changeCurrency, referenceCurrency) => {
-        wallet[changeCurrency] = +newBalanceChange;
-        wallet[referenceCurrency] = +newBalanceReference;
+        wallet[changeCurrency] = +newBalanceChange.toFixed(3);
+        wallet[referenceCurrency] = +newBalanceReference.toFixed(3);
         const newUserData = {...userData, wallet};
         dispatch(SetUserData(newUserData));
         dispatch(postUserData(login, newUserData));
@@ -109,7 +114,14 @@ const TradeWindow = () => {
                     </div>
                     <div className='trade-window__info'>
                         <div className='trade-window__info-rate'>Rate: {(rate).toLocaleString('ru')} {changeCurrency}</div>
-                        <input className='trade-window__info-input' type='number' onChange={(event) => changeCost(event.target.value)}></input>
+                        <label title='Value must be greater than zero'>
+                            <input
+                                style={{borderColor: colorInput}}
+                                className='trade-window__info-input' 
+                                type='number' 
+                                onChange={(event) => changeCost(event.target.value)}>
+                            </input>
+                        </label>
                         <div className='trade-window__info-balance'>Balance: { type === 'BUY' ? wallet[changeCurrency].toLocaleString('ru') : wallet[referenceCurrency].toLocaleString('ru')} {type === 'BUY' ? changeCurrency : referenceCurrency}</div>
                         <div>Your need: {(+sumYouNeed).toLocaleString('ru')}</div>
                         <button style={{backgroundColor:colorBtn}} onClick={changeUserData}>{type}</button>
